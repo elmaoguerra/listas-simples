@@ -1,0 +1,58 @@
+Objetivo: Los estudiantes con este software van a aprender las operaciones que se realizan en una lista simple e interpretar el pseudocódigo que las realiza, sin tener concocimientos del tema.
+
+==================================[ROLES]
+
++ Estudiante
+	- Se deben crear 3 grupos de estudiantes, para cada grupo existira algúna forma diferente de transferir el aprendizaje.
+
+	- Todos los grupos tendrán la introducción de listas simples (contenido), explicacion de las operaciones que se pueden realizar en una lista (inserción, modificación y borrado).
+
+	-Todos los grupos tendrán X ejemplos de las operaciones con el pseudocodigo que las realiza y una animación del ejemplo.
+
+	+ Grupo Básico (Solo ejercicios)
+
+		- En este grupo despues de la presentación de los ejemplos se le asignan X ejercicios que el estudiante debe realizar.
+
+	+ Grupo Solo Metas (metas que define la profesora)
+
+		- De una lista de metas el estudiante escoje las metas que se propone a cumplir.
+		Por ejemplo: el estudiante escoge la meta {crear una lista con 5 nodos}
+
+		- Por cada meta se genera X ejercicios y se tiene hasta 3 intentos para cumplirla.
+
+		- Se debe almacenar el tiempo empleado y el numero de intetos que requirió.
+		Por ejemplo: 45 segundos, 2/3 (67% eficiencia).
+
+	+ Grupo Metas - Autoreflexion (Definida por la profesora)
+			.
+			.
+			.
+			.
+
+
++ Administrador (Docente)
+
+	- El docente puede crear ejemplos y ejercicios para evitar que los mecanizen.
+
+	- Debe conocer la transferencia de aprendizaje de cada grupo (rendimiento de todos los estudiantes de cada grupo)
+
+	- Rendimiento del estudiante: 
+		* eficacia   -> Tiempo empleado
+		* eficiencia -> Aciertos
+
+
+
+======================================[EJERCICIOS]
+
+Estructura de los ejercicios:
+
+Enunciado: 
+Dada la siguiente lista [3]->[6]->[9]->[0]->NULL... se debe insertar un nodo con el dato 5 al comienzo de la lista.
+
+Sentencias de Pseudocódigo (desordenadas).
+
+Solución: Organizar las lineas que se encuentran en cajas que se puedan arrastrar (draggable)
+
+Enviar datos: Tiempo empleado en el ejercicio y porcentaje de acierto.
+
+======================================

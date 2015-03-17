@@ -1,0 +1,17 @@
+Preguntas:
+
+¿Una lista puede tener nodos repetidos, es decir que el dato se repita en la lista?
+
+¿Cuántos intentos tienen los estudiantes por ejercicio para cada grupo de estudiantes?
+
+¿Cuántos ejercicios se generan por una meta seleccionada?
+
+¿El tiempo se medirá por ejercicio y la eficiencia por numero de aciertos o porcentaje?
+
+======
+
+¿El estudiante puede ver su rendimiento (eficiencia y eficacia) ?
+
+¿Cuales son las metas, el administrador las crea o estan definidas desde un principio?
+
+¿Como es el funcionamiento del Grupo Metas - Autoreflexion?
