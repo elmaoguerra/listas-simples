@@ -1,11 +1,11 @@
-Objetivo: Los estudiantes con este software van a aprender las operaciones que se realizan en una lista simple e interpretar el pseudocódigo que las realiza, sin tener concocimientos del tema.
+﻿Objetivo: Los estudiantes con este software van a aprender las operaciones que se realizan en una lista simple e interpretar el pseudocódigo que las realiza, sin tener concocimientos del tema.
 
 ==================================[ROLES]
 
 + Estudiante
 	- Se deben crear 3 grupos de estudiantes, para cada grupo existira algúna forma diferente de transferir el aprendizaje.
 
-	- Todos los grupos tendrán la introducción de listas simples (contenido), explicacion de las operaciones que se pueden realizar en una lista (inserción, modificación y borrado).
+	- Todos los grupos tendrán la introducción de listas simples (contenido), explicacion de las operaciones que se pueden realizar en una lista (inserción, modificación y borrado,  impresion).
 
 	-Todos los grupos tendrán X ejemplos de las operaciones con el pseudocodigo que las realiza y una animación del ejemplo.
 
