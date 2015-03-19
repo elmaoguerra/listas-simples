@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `listasimple`.`usuario` (
   `nombre` VARCHAR(100) NULL,
   `email` VARCHAR(120) NULL,
   `password` VARCHAR(40) NOT NULL,
-  `conexion` DATETIME(1) NULL DEFAULT CURRENT_TIMESTAMP,
+  `conexion` DATETIME NULL,
   `grupo_id` TINYINT(1) NOT NULL,
   PRIMARY KEY (`codigo`, `grupo_id`),
   INDEX `fk_user_grupo1_idx` (`grupo_id` ASC),
@@ -62,7 +62,7 @@ DROP TABLE IF EXISTS `listasimple`.`operacion` ;
 
 CREATE TABLE IF NOT EXISTS `listasimple`.`operacion` (
   `id` TINYINT(2) NOT NULL,
-  `name` (255) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
   `descripcion` VARCHAR(255) NULL,
   PRIMARY KEY (`id`));
 
