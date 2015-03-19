@@ -21,5 +21,8 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('welcome_message');
+		
+		 log_message('debug', 'JJOC prueba log');
+		
 	}
 }
