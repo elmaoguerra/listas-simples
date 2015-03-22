@@ -40,7 +40,24 @@
 							     <td align="center"><?php echo $row->id; ?></td>
                                  <td align="center"><?php echo $row->enunciado; ?></td>
                                  <td align="center"><?php echo $row->lista_inicial; ?></td>
-                                 <td align="center"><?php echo $row->operacion_id; ?></td>
+                                 <td align="center">
+								 <?php 
+								 	if(isset ($operaciones)){ 
+										if($operaciones!=false){ 
+							 
+											foreach ($operaciones->result() as $rowOP) 
+											{
+												if($rowOP->id ==$row->operacion_id){
+													echo $rowOP->name;
+													break;
+												}
+											}
+										}
+									}
+								 
+								  ?>
+                                 
+                                 </td>
                                  <td width="50" align="center"><a href="<?php echo base_url();?>index.php/adminejerciciocontroller/actualizar/<?php echo $row->id;?>"><img src="<?php echo base_url();?>images/editar.png" width="21" height="21" style="border: none;" /></a></td>
                                 <td align="center"><a href="<?php echo base_url();?>index.php/adminejerciciocontroller/eliminar/<?php echo $row->id;?>"><img src="<?php echo base_url();?>images/delete.png" width="21" height="21" style="border: none;" /></a></td>
                              

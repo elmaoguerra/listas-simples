@@ -10,9 +10,9 @@ class ejercicio_model extends CI_Model{
 	 
 	function crearejercicio($data){
 		
-        $this->db->insert('ejercicio', array('id'  => $data['id'],  
+        $this->db->insert('ejercicio', array('id'  => $data['id'], 
+											'enunciado'  => $data['enunciado'], 
 											'lista_inicial'  => $data['lista_inicial'], 
-											'solucion'  => $data['solucion'], 
 											'operacion_id'  => $data['operacion_id']));
 	} 
  

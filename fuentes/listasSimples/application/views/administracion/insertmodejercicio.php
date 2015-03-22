@@ -10,7 +10,27 @@
      <input type="text" name="txtlista_inicial" id="txtlista_inicial" value="<?php echo isset ($lista_inicial) && $lista_inicial != null ? $lista_inicial : ''; ?>"></td></tr>
      
      <tr><td>operacion</td><td><label for="txtoperacion_id"></label>
-     <input type="text" name="txtoperacion_id" id="txtoperacion_id" value="<?php echo isset ($operacion_id) && $operacion_id != null ? $operacion_id : ''; ?>"></td></tr>
+     <select name="txtoperacion_id">
+       <option <?php echo $operacionSel== 0 ? "selected":"" ?> value="0">Seleccione ...</option>
+       
+        <?php  
+					if(isset ($operacionesAsoc)){ 
+						if($operacionesAsoc!=false){ 
+							 
+							foreach ($operacionesAsoc->result() as $row) 
+							{?> 
+                            
+        <option <?php echo $operacionSel == $row->id  ? "selected":"" ?>  value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>              
+        <?php }
+						}
+					}
+					?>
+       
+       
+       
+     
+     </select>
+     </td></tr>
  
 	 
     <tr>

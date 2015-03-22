@@ -7,6 +7,7 @@ class AdminEjercicioController extends CI_Controller {
 		$this->load->helper('url');	 
 		$this->load->model('ejercicio_model'); 
 		$this->load->model('sentencia_model'); 
+		$this->load->model('operacion_model'); 
 		
 	} 
 	 
@@ -17,6 +18,7 @@ class AdminEjercicioController extends CI_Controller {
 		//consultar ejercicio 
 		$data = $this->ejercicio_model->consultarejercicio(); 
 		$datosC['data']= $data; 
+		$datosC['operaciones'] = $this->operacion_model->consultaroperacion(); 
 		 
 		$datos['contenidoInt'] = $this->load->view('administracion/listarejercicio',$datosC,true);		 
 		$this->load->view('administracion/contenido',$datos); 
@@ -25,7 +27,14 @@ class AdminEjercicioController extends CI_Controller {
 	public function insertar() 
 	{ 
 		$datos['tituloCon'] = 'Registrar ejercicio'; 
-		$datos['contenidoInt'] = $this->load->view('administracion/insertmodejercicio','',true);		 
+		
+		//secargan las operaciones
+		$datosInsert['operacionesAsoc'] = $this->operacion_model->consultaroperacion(); 
+		//la operacion seleccionada es 0 ya que se va a insertar
+		$datosInsert['operacionSel'] = 0;
+		
+		$datos['contenidoInt'] = $this->load->view('administracion/insertmodejercicio',$datosInsert,true);	
+		 
 		$this->load->view('administracion/contenido',$datos); 
 		 
 	} 
@@ -73,6 +82,7 @@ class AdminEjercicioController extends CI_Controller {
 	//consultar ejercicio 
 	$data = $this->ejercicio_model->consultarejercicio(); 
 	$datosContenido['data']= $data; 
+	$datosContenido['operaciones'] = $this->operacion_model->consultaroperacion(); 
 	 
 	$datos['contenidoInt'] = $this->load->view('administracion/listarejercicio',$datosContenido,true);			 
 	$this->load->view('administracion/contenido',$datos); 
@@ -96,7 +106,7 @@ class AdminEjercicioController extends CI_Controller {
 				 $datosObj['id'] =	$row->id; 
 				 $datosObj['enunciado']= $row->enunciado;
 				 $datosObj['lista_inicial']= $row->lista_inicial;
-				 $datosObj['operacion_id']= $row->operacion_id;
+				 $datosObj['operacionSel'] = $row->operacion_id;
 			}
 		}
 		
@@ -114,6 +124,11 @@ class AdminEjercicioController extends CI_Controller {
 		}
 		
 		$datosObj['lineas'] = $codigoAct;
+		
+		//secargan las operaciones
+		$datosObj['operacionesAsoc'] = $this->operacion_model->consultaroperacion(); 
+		
+		
 		 
 		$datos['contenidoInt'] = $this->load->view('administracion/insertmodejercicio',$datosObj,true);		 
 		$this->load->view('administracion/contenido',$datos); 
@@ -163,6 +178,7 @@ class AdminEjercicioController extends CI_Controller {
 		//consultar ejercicio 
 		$data = $this->ejercicio_model->consultarejercicio(); 
 		$datosContenido['data']= $data; 
+		$datosContenido['operaciones'] = $this->operacion_model->consultaroperacion(); 
 		 
 		$datos['contenidoInt'] = $this->load->view('administracion/listarejercicio',$datosContenido,true);			 
 		$this->load->view('administracion/contenido',$datos); 
@@ -184,18 +200,11 @@ class AdminEjercicioController extends CI_Controller {
 		//consultar ejercicio 
 		$data = $this->ejercicio_model->consultarejercicio(); 
 		$datosC['data']= $data; 
+		$datosC['operaciones'] = $this->operacion_model->consultaroperacion(); 
 		 
 		$datos['contenidoInt'] = $this->load->view('administracion/listarejercicio',$datosC,true);		 
 		$this->load->view('administracion/contenido',$datos); 
 		 
 	} 
-	 
-	public function listar() 
-	{ 
-		$datos['tituloCon'] = 'ejercicio'; 
-		$datos['contenidoInt'] = $this->load->view('administracion/listarejercicio','',true);		 
-		$this->load->view('administracion/contenido',$datos); 
-	} 
-	 
 } 
 
