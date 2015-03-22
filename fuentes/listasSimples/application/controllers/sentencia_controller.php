@@ -32,7 +32,7 @@ class AdminsentenciaController extends CI_Controller {
 	public function insertarAcc() 
 	{ 
 		 
-		     $datos['id']= $this->input->post('txtid');
+	 $datos['id']= $this->input->post('txtid');
      $datos['instruccion']= $this->input->post('txtinstruccion');
      $datos['ejercicio_id']= $this->input->post('txtejercicio_id');
  
@@ -121,4 +121,4 @@ class AdminsentenciaController extends CI_Controller {
 	} 
 	 
 } 
-
+

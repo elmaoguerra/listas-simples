@@ -8,34 +8,35 @@ class operacion_model extends CI_Model{
 		$this->load->database(); 
 	} 
 	 
-	    function crearoperacion($data){
-        $this->db->insert('operacion', array('id'  => $data['id'], 
-'name'  => $data['name'], 
-'descripcion'  => $data['descripcion']));
-} 
+	function crearoperacion($data){
+        $this->db->insert('operacion', array('name'  => $data['name'], 
+											'descripcion'  => $data['descripcion']));
+	} 
  
-	    function consultaroperacion(){
+	function consultaroperacion(){
         $query = $this->db->get('operacion');
-if($query->num_rows() >0 ) return $query; 
-else return false; 
-} 
+		if($query->num_rows() >0 ) return $query; 
+		else return false; 
+	} 
  
-	    function consultaroperacion($id){
+	function consultaroperacionById($id){
         $this->db->where('id',$id);
         $query = $this->db->get('operacion'); 
 
-if($query->num_rows() >0 ) return $query; 
-else return false; 
-} 
+		if($query->num_rows() >0 ) return $query; 
+		else return false; 
+	} 
  
-	    function actualizaroperacion($id, $data){
+	function actualizaroperacion($id, $data){
         $this->db->where('id',$id);
-        $this->db->update('operacion', array('id'  => $data['id'], 
-'name'  => $data['name'], 
-'descripcion'  => $data['descripcion']));
-} 
+        $this->db->update('operacion', array('name'  => $data['name'], 
+											 'descripcion'  => $data['descripcion']));
+	} 
 	 
+	function eliminaroperacion($id){
+		$this->db->delete('operacion', array('id' => $id)); 
+	}
 } 
  
 ?> 
-
+

@@ -17,11 +17,10 @@
         <table cellpadding="0" cellspacing="0" border="0" id="table" class="tinytable"> 
             <thead> 
                 <tr> 
-                         <th><h3>id</h3></th>
-     <th><h3>enunciado</h3></th>
-     <th><h3>lista_inicial</h3></th>
-     <th><h3>solucion</h3></th>
-     <th><h3>operacion_id</h3></th>
+                         <th><h3>Id</h3></th>
+     <th><h3>Enunciado</h3></th>
+     <th><h3>Lista inicial</h3></th>
+     <th><h3>Operacion</h3></th>
      <th align="center" class="nosort"><h3>Editar</h3></th>
     <th width="50" align="center" class="nosort"><h3>Eliminar</h3></th>
  
@@ -39,19 +38,18 @@
 						  <tr> 
 							 
 							     <td align="center"><?php echo $row->id; ?></td>
-     <td align="center"><?php echo $row->enunciado; ?></td>
-     <td align="center"><?php echo $row->lista_inicial; ?></td>
-     <td align="center"><?php echo $row->solucion; ?></td>
-     <td align="center"><?php echo $row->operacion_id; ?></td>
-     <td width="50" align="center"><a href="<?php echo base_url();?>index.php/adminejercicio/actualizar/<?php echo $row->id;?>"><img src="<?php echo base_url();?>images/editar.png" width="21" height="21" style="border: none;" /></a></td>
-    <td align="center"><a href="<?php echo base_url();?>index.php/adminejercicio/eliminar/<?php echo $row->id;?>"><img src="<?php echo base_url();?>images/delete.png" width="21" height="21" style="border: none;" /></a></td>
- 
+                                 <td align="center"><?php echo $row->enunciado; ?></td>
+                                 <td align="center"><?php echo $row->lista_inicial; ?></td>
+                                 <td align="center"><?php echo $row->operacion_id; ?></td>
+                                 <td width="50" align="center"><a href="<?php echo base_url();?>index.php/adminejerciciocontroller/actualizar/<?php echo $row->id;?>"><img src="<?php echo base_url();?>images/editar.png" width="21" height="21" style="border: none;" /></a></td>
+                                <td align="center"><a href="<?php echo base_url();?>index.php/adminejerciciocontroller/eliminar/<?php echo $row->id;?>"><img src="<?php echo base_url();?>images/delete.png" width="21" height="21" style="border: none;" /></a></td>
+                             
 							 
 						  </tr>   
 							<?php 
 							} 
 						} 
-					} 
+					}
 					?> 
  
             </tbody> 
@@ -112,4 +110,4 @@
 		init:true 
 	}); 
   </script> 
-
+

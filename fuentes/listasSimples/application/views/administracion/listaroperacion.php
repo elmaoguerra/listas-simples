@@ -39,8 +39,8 @@
 							     <td align="center"><?php echo $row->id; ?></td>
      <td align="center"><?php echo $row->name; ?></td>
      <td align="center"><?php echo $row->descripcion; ?></td>
-     <td width="50" align="center"><a href="<?php echo base_url();?>index.php/adminoperacion/actualizar/<?php echo $row->id;?>"><img src="<?php echo base_url();?>images/editar.png" width="21" height="21" style="border: none;" /></a></td>
-    <td align="center"><a href="<?php echo base_url();?>index.php/adminoperacion/eliminar/<?php echo $row->id;?>"><img src="<?php echo base_url();?>images/delete.png" width="21" height="21" style="border: none;" /></a></td>
+     <td width="50" align="center"><a href="<?php echo base_url();?>index.php/adminoperacioncontroller/actualizar/<?php echo $row->id;?>"><img src="<?php echo base_url();?>images/editar.png" width="21" height="21" style="border: none;" /></a></td>
+    <td align="center"><a href="<?php echo base_url();?>index.php/adminoperacioncontroller/eliminar/<?php echo $row->id;?>"><img src="<?php echo base_url();?>images/delete.png" width="21" height="21" style="border: none;" /></a></td>
  
 							 
 						  </tr>   
@@ -108,4 +108,4 @@
 		init:true 
 	}); 
   </script> 
-
+
