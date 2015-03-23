@@ -19,7 +19,8 @@ class LoginController extends CI_Controller{
 			if($variable == true){
 				session_start();
 				$variables = array(
-								'nombre' => $this->input->post('user')
+								'nombre' => $variable->nombre,
+								'grupo_id' => $variable->grupo_id
 							);
 				$this->session->set_userdata($variables);
 				redirect(base_url().'index.php/PrincipalController');

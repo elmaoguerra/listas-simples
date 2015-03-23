@@ -13,7 +13,7 @@ class LoginModel extends CI_Model{
 											'password'=>$this->input->post('pass',TRUE)));
 		if($consulta->num_rows() == 1)
 		{
-			return true;
+			return $consulta->row();
 		}else{
 			return false;
 		}
