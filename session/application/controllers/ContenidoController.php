@@ -17,7 +17,7 @@ class ContenidoController extends CI_Controller{
 
 	public function very_session(){
 		if(!$this->session->userdata('nombre')){
-			redirect(base_url().'LoginController/index');
+			redirect(base_url().'LoginController');
 		}
 	}
 }

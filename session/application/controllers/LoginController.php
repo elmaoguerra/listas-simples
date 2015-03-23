@@ -33,20 +33,20 @@ class LoginController extends CI_Controller{
 								'nombre' => $this->input->post('user')
 							);
 				$this->session->set_userdata($variables);
-				redirect(base_url().'ContenidoController/index');
+				redirect(base_url().'ContenidoController');
 			}else{
 				$data = array('mensaje' => 'Usuario o contraseña incorrectos');
 				$this->load->view('login',$data);
 			}
 
 		}else{
-			redirect(base_url().'LoginController/index');
+			redirect(base_url().'LoginController');
 		}
 	}
 
 	public function close_session(){
 		session_destroy();
-		redirect(base_url().'LoginController/index');
+		redirect(base_url().'LoginController');
 	}
 }
 
