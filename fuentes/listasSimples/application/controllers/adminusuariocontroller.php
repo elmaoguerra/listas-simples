@@ -42,6 +42,19 @@ class AdminusuarioController extends CI_Controller {
 	
 	$datos['notificacion'] = 'Se creo el usuario exitosamente'; 
 	
+
+	//Enviar correo
+		
+	$this->load->model('MailModel');
+	$variable = $this->MailModel->enviar($datos);
+	if($variable == true){
+			echo 'mensaje enviado';
+		}else{
+			echo 'no se envio el mensaje';
+		}
+
+
+
 	$datos['tituloCon'] = 'Usuarios'; 
 	
 	//consultar usuario 

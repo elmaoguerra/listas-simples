@@ -5,7 +5,8 @@ class usuario_model extends CI_Model{
 	 
 	function __construct(){ 
 		parent::__construct(); 
-		$this->load->database(); 
+		$this->load->database();
+		
 	} 
 	 
 	function crearusuario($data){
@@ -14,6 +15,9 @@ class usuario_model extends CI_Model{
 											'email'  => $data['email'], 
 											'password'  => $data['password'], 
 											'grupo_id'  => $data['grupo_id']));
+
+
+        
 	} 
  
 	function consultarusuario(){
