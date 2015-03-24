@@ -1,11 +1,14 @@
 var canvas, ctx; 
 var lista=["a","b","d", "8", "M"];
-var intervalo=0;
-var rx=0;
+var intervalo;
+var rx;
 function inicio () {
-	canvas=document.getElementById("canvas");
-	ctx = canvas.getContext('2d');
-	var ancho = lista.length * 12;
+	ctx = document.getElementById("canvas").getContext('2d');
+	var ancho = 100 + (lista.length * (-8));
+	rx=intervalo=0;
+
+	ctx.clearRect(0,0,700,350);
+
 	agregarListener();
 
 	crearCabeza(ancho, 0, 0);
@@ -14,9 +17,8 @@ function inicio () {
 }
 
 function crearCabeza (ancho, x, y) {
-
-	ctx.clearRect(0,0,ancho-14, ancho+25);
-	ctx.clearRect(x,y,ancho-15, ancho+17);
+	ctx.clearRect(0,0,ancho-14, ancho+50);
+	//ctx.clearRect(x,y,ancho-6, ancho+45);
 
 	ctx.fillStyle = "rgb(200,0,0)";
     ctx.fillRect (x+1, y+3, 20, 20);
@@ -28,8 +30,8 @@ function crearCabeza (ancho, x, y) {
     	//crear apuntador a primer elemento
     	var puntos=[
     		new Punto(x+15,y+15), 
-    		new Punto(x+15, y+ancho+15),
-    		new Punto(x+ancho-15, y+ancho+15)
+    		new Punto(x+15, 50 + y+(ancho*0.5)),
+    		new Punto(x+ancho-15, 50 + y+(ancho*0.5))
     	];
     	var linea=new Linea(puntos);
     	linea.estilo="#00f";
@@ -69,10 +71,10 @@ function dibujarNodo (ancho, dato, i) {
 }
 
 function crearNodo (x, y, dato) {
-	var ancho = lista.length * 12;
+	var ancho = 100 + (lista.length * (-8));
 	var alto = ancho;
 
-	ctx.clearRect(x - 6, y - 6, (x+ancho), (y+alto));
+	ctx.clearRect(x - 6, y - 6, 2*ancho, alto + 12);
 	ctx.shadowBlur = 5;
 	ctx.shadowColor = "#0a6d42";
 	ctx.fillStyle="#14cedb";
@@ -87,20 +89,11 @@ function crearNodo (x, y, dato) {
 	ctx.fillRect(x+(ancho*0.7), y, ancho*0.3, alto);
 }
 
-function agregarListener () {
-	var boton=document.getElementById("crear-nodo");
-	boton.addEventListener("click", f_crearNodo);
-	boton=document.getElementById("recorrer");
-	boton.addEventListener("click", f_recorrerLista);
-	boton=document.getElementById("insertar-inicio");
-	boton.addEventListener("click", f_insertarInicio);
-}
-
 function f_crearNodo () {
 	var x, y, ancho;
-	x = 320; y = 250; 
-	ancho = lista.length*12;
-	crearNodo(x, y, 'm');
+	x = 320; y = 180; 
+	ancho = 100 + (lista.length * (-8));
+	crearNodo(x, y, caracterAleat());
 
 	var puntos = [
     		new Punto(x+(ancho*0.9), y + (ancho/2)), 
@@ -116,9 +109,77 @@ function f_recorrerLista () {
 }
 
 function recorriendo() {
-	
+	var ancho = 100 + (lista.length * (-8));
 	if(rx<lista.length){
-		var ancho = lista.length * 12;
+		
+		var hueco = ancho;
+
+		var dx = (ancho*rx) + (hueco*(rx+1)) + (ancho*0.3);
+		ctx.clearRect(0, 0, 700, 30);
+		
+		ctx.fillStyle = "rgb(200,0,0)";
+	    ctx.fillRect (dx-5, 10, 20, 20);
+
+	    ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+	    ctx.fillRect (dx, 15, 20, 20);
+		rx++;
+	}else{
+		clearInterval(intervalo);
+		alert("Se ha recorrido toda la lista");
+		rx=0;
+		ctx.clearRect(0, 0, 700, 36);
+		crearCabeza(ancho, 0,0);
+	}
+	
+}
+
+function f_insertarInicio () {
+	var x, y, ancho;
+	var dato =caracterAleat();
+	ancho = 100 + (lista.length * (-8));
+	x = ancho; y = 180;
+
+	setTimeout(function(){
+		inicio();
+	},3000);
+
+	crearNodo(x, y, dato);
+	setTimeout(function(){
+		crearCabeza(ancho, 0, 180-ancho);
+	},1000); 
+    
+	setTimeout(function(){
+	    var puntos = [
+	    		new Punto(x+(ancho*0.9), y + (ancho/2)), 
+	    		new Punto(x+(ancho*0.9), 117),
+	    		new Punto(15, 117),
+	    		new Punto(15, 1.5*ancho -5),
+	    		new Punto(ancho - 5 , 1.5*ancho -5)
+		];
+		var linea=new Linea(puntos);
+		if (lista.length>0) {
+			linea.estilo="#000";
+		} else{
+			linea.estilo="#d00";
+		};
+	    linea.trazarFlecha();
+
+	    lista.splice(0, 0, dato );
+	},2000); 
+}
+
+function f_insertarDespues () {
+	var dato = prompt("Ingresa un dato de la lista",
+		lista[Math.floor(Math.random()*(lista.length - 0))]);
+	intervalo = setInterval(function () {
+		insertarDespues(dato);		
+	}, 500);
+}
+
+function insertarDespues (dato) {
+	var ancho = 100 + (lista.length * (-8));
+	if(rx<lista.length){
+		
 		var hueco = ancho;
 
 		var dx = (ancho*rx) + (hueco*(rx+1)) + (ancho*0.3);
@@ -130,46 +191,108 @@ function recorriendo() {
 	    ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
 	    ctx.fillRect (dx, 15, 20, 20);
 
-		ctx.fillRect(dx, 15, 20, 20);
+	    if(lista[rx]==dato){
+	    	var x, y;
+	    	x=(ancho*rx) + (hueco*(rx+1));
+	    	y=50;
+	    	ctx.fillStyle="#14cedb";
+	    	ctx.clearRect(x-5, y-5, (2*ancho), 350);
+	    	crearNodo(x,y, dato);
+
+	    	dato=caracterAleat();
+	    	setTimeout(function(){
+	    		crearNodo(x,180, dato);
+	    		setTimeout(function(){
+					var puntos = [
+			    		new Punto( x + (ancho*0.9), y + (ancho/2)), 
+			    		new Punto( x + (ancho*0.9), y + ancho + 35 ),
+			    		new Punto( x - (ancho*0.5), y + ancho + 35 ),
+			    		new Punto( x - (ancho*0.5), 180 + (ancho/2) ),
+			    		new Punto( x - (ancho*0.1), 180 + (ancho/2) )
+					];
+					var linea=new Linea(puntos);
+					linea.estilo="#000";
+					
+				    linea.trazarFlecha();
+				    setTimeout(function(){
+					    y=180;
+					    var puntos = [
+				    		new Punto( x + (ancho*0.9), y + (ancho/2)), 
+				    		new Punto( x + (ancho*1.5), y + (ancho/2)),
+				    		new Punto( x + (ancho*1.5), 50 + (ancho/2)),
+				    		new Punto( x + (ancho*1.9), 50 + (ancho/2))
+				    		/*
+				    		new Punto( x - (ancho*0.5), y + ancho + 35 ),
+				    		new Punto( x - (ancho*0.5), 180 + (ancho/2) ),
+				    		new Punto( x - (ancho*0.1), 180 + (ancho/2) )*/
+						];
+					    linea.puntos=puntos;
+					    lista.splice(rx, 0, dato );
+					    if (rx<lista.length - 1) {
+							linea.estilo="#000";
+						} else{
+							linea.estilo="#d00";
+						};
+					    linea.trazarFlecha();
+				    	rx=lista.length;
+					},2500);
+
+				},3000);
+
+
+			},500);
+
+		    
+			clearInterval(intervalo);
+			setTimeout(function(){
+				inicio();
+			},7000);
+	    }
 		rx++;
 	}else{
 		clearInterval(intervalo);
-		alert("Se ha recorrido toda la lista");
-		rx=0;
-		ctx.clearRect(0, 0, 700, 36);
-		crearCabeza(lista.length * 12, 0,0);
+		alert("NO se ha encontrado el dato en la lista");
+		inicio();
 	}
+}
+function f_insertarFinal () {
+	intervalo = setInterval(function () {
+		insertarDespues(lista[lista.length-1]);		
+	}, 500);
+}
+
+function agregarListener () {
+	var boton=document.getElementById("crear-nodo");
+	boton.addEventListener("click", f_crearNodo);
+	boton=document.getElementById("recorrer");
+	boton.addEventListener("click", f_recorrerLista);
+	boton=document.getElementById("insertar-inicio");
+	boton.addEventListener("click", f_insertarInicio);
+	boton=document.getElementById("insertar-despues");
+	boton.addEventListener("click", f_insertarDespues);
+	boton=document.getElementById("insertar-final");
+	boton.addEventListener("click", f_insertarFinal);
+}
+
+function caracterAleat () {
 	
-}
-
-function f_insertarInicio () {
-	var x, y, ancho;
-
-	ancho = lista.length*12;
-	x = ancho; y = 250; 
-
-	crearLista()
-
-
-	crearNodo(x, y, 'm');
-
-    crearCabeza(ancho, 0, 250-ancho);
-
-    var puntos = [
-    		new Punto(x+(ancho*0.9), y + (ancho/2)), 
-    		new Punto(x+(ancho*0.9), 150),
-    		new Punto(15, 150),
-    		new Punto(15, 1.5*ancho -5),
-    		new Punto(ancho - 5 , 1.5*ancho -5)
-	];
-	var linea=new Linea(puntos);
-	if (lista.length>0) {
-		linea.estilo="#000";
+	
+	var a=Math.random();
+	var n;
+	if(a>=0 && a<0.34){
+		//Numeros 48-57
+		n=Math.floor(Math.random()*(58- 48) + 48);
+	}else if (a>=0.34 && a<=0.66) {
+		//Mayus 65-90
+		n=Math.floor(Math.random()*(91- 65) + 65);
 	} else{
-		linea.estilo="#d00";
+		//Minus 97-122
+		n=Math.floor(Math.random()*(123- 97) + 97);
 	};
-    linea.trazarFlecha();
+
+	return String.fromCharCode(n); 
 }
+
 
 var Punto=function (x, y) {
 	this.x=x;
@@ -181,7 +304,7 @@ var Linea = function (cordenadas) {
 	this.anchoLinea = 2;
 	this.puntos = cordenadas;
 	this.redonda = true;
-	this.radio = 0.2*(lista.length*12);
+	this.radio = 0.2*(lista.length * (32 - (4*lista.length)));
 	this.angulo = 30;
 
 	this.trazarFlecha=function () {

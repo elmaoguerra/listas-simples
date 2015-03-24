@@ -1,11 +1,31 @@
 body{
-	background-color: #272727;
+	
+	background-color: #170805;
+	background-size: 100%;
 	text-align: center;
+}
+
+#marco{
+	background-image: url('../images/fondo.jpg');
+	/*background-image: url('http://fondox.net/0/4029');*/
+	
+	background-repeat: repeat no-repeat;
+	height: 883px;
+	/*position: fixed;*/
+}
+
+footer{
+	background-image: url('../images/piso.jpg') ;
+	/*display: block;*/
+	bottom: 0px;
+	height: 140px;
+	width: 100%;
+	/*position: fixed;*/
 }
 
 header {
 	background-color: #606080;
-	margin-bottom: 1em;
+	
 }
 
 header a{
@@ -17,6 +37,7 @@ header a{
 .inline-block-top{
 	display: inline-block;
 	vertical-align: top;
+
 }
 .menu {	
 	background-color: #2C0606;
@@ -56,11 +77,14 @@ header a{
 
 #canvas{
 	background-color: #fcecd3;
-	border: 1px solid black;
+	border: 5px solid #c0c0c0;
+	margin: 10px;
+	margin-top: 30px;
 }
 
 #sec-canvas{
-	background-color: #fcfcfc;
+	/*background-color: #c0c0c0;*/
+	padding-bottom: 10px;
 }
 
 #sec-codigo{
