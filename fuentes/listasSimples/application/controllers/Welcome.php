@@ -3,6 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
 
+	function __construct(){ 
+		parent::__construct(); 
+		$this->load->helper('url');	 
+		$this->load->model('ejercicio_model'); 
+		$this->load->model('sentencia_model'); 
+		$this->load->model('operacion_model'); 
+		
+	} 
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -20,9 +29,51 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('menu');
+		$id = 9;
+		//carga de ejercicio
+		$objectAct = $this->ejercicio_model->consultarejercicioById($id); 
+		if($objectAct!=false){ 
+							 
+			foreach ($objectAct->result() as $row) 
+			{
+				 //$datos['id'] =	$row->id; 
+				 $datos['enunciado']= $row->enunciado;
+				 $datos['lista']= $row->lista_inicial;
+				 $datos['operacionSel'] = $row->operacion_id;
+			}
+		}
+
+		//carga de sentencias
 		
-		 log_message('debug', 'JJOC prueba log');
+		$codigoAct ="";
+		$sentencias = $this->sentencia_model->consultarsentenciaByEjercicio($id); 
+		
+		if($sentencias!=false){ 
+			foreach ($sentencias->result() as $row) 
+			{	
+				$codigoAct=$codigoAct.$row->instruccion;
+			}
+		}
+		
+		$datos['lineas'] = $codigoAct;
+
+		//$lista="a, b, c, d";
+		//$datos['lista']="A,b,c,d";
+		$this->load->view('menu', $datos);
+		
+		 //log_message('debug', 'JJOC prueba log');
 		
 	}
+
+	public function actualizar() 
+	{ 
+		
+		//secargan las operaciones
+		$datosObj['operacionesAsoc'] = $this->operacion_model->consultaroperacion(); 
+		
+		
+		 
+		$datos['contenidoInt'] = $this->load->view('administracion/insertmodejercicio',$datosObj,true);		 
+		$this->load->view('administracion/contenido',$datos); 
+	} 
 }

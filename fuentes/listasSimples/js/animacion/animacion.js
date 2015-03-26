@@ -1,9 +1,15 @@
 var canvas, ctx; 
-var lista=["a","b","d", "8", "M"];
+var lista=[];
 var intervalo;
 var rx;
+getLista();
+function getLista () {
+	var label=document.getElementById('lista').innerHTML;
+	lista=label.split(",");
+}
 function inicio () {
 	ctx = document.getElementById("canvas").getContext('2d');
+	actualizarLabel();
 	var ancho = 100 + (lista.length * (-8));
 	rx=intervalo=0;
 
@@ -14,6 +20,17 @@ function inicio () {
 	crearCabeza(ancho, 0, 0);
 	
 	crearLista(ancho);
+	var codigo=document.getElementById('codigo').childNodes[3].childNodes;
+	console.log(codigo);
+	var codigo = document.getElementById('codigo').childNodes[3];
+	console.log(codigo.firstElementChild);
+	var texto=codigo.textContent;
+	var aux = texto.split('\n');
+	console.log(aux);
+
+	var otro = document.getElementsByTagName('OL');
+	console.log(otro);
+
 }
 
 function crearCabeza (ancho, x, y) {
@@ -108,7 +125,7 @@ function f_recorrerLista () {
 	intervalo = setInterval(recorriendo, 500);
 }
 
-function recorriendo() {
+function recorriendo(dato) {
 	var ancho = 100 + (lista.length * (-8));
 	if(rx<lista.length){
 		
@@ -122,10 +139,41 @@ function recorriendo() {
 
 	    ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
 	    ctx.fillRect (dx, 15, 20, 20);
-		rx++;
+	    if(lista[rx]==dato){
+	    	var datoA = prompt("' "+dato+" ' Encontrado!\n" +
+	    		"Digite el nuevo dato", dato);
+	    	if (datoA!=null) {
+		    	var x=(ancho*rx) + (hueco*(rx+1));
+		    	var y=50;
+		    	crearNodo(x,y,datoA);
+		    	var puntos = [
+			    		new Punto(x+(ancho*0.9), y + (ancho/2)), 
+			    		new Punto(x+(ancho*0.9) + ancho, y + (ancho/2))
+				];
+				var linea=new Linea(puntos);
+				if (rx<lista.length - 1) {
+					linea.estilo="#000";
+				} else{
+					linea.estilo="#d00";
+				};
+			    linea.trazarFlecha();
+		    	lista[rx]=datoA;
+		    	actualizarLabel();
+	    	};
+			ctx.clearRect(0, 0, 700, 36);
+			crearCabeza(ancho, 0,0);
+		    clearInterval(intervalo);
+		    rx=0;
+	    }else{
+			rx++;
+	    }
 	}else{
 		clearInterval(intervalo);
-		alert("Se ha recorrido toda la lista");
+		var msj = "Se ha recorrido toda la lista";
+		if (dato!=null) {
+			msj+="\ny no se ha encotrado el dato ' "+dato+" '"; 
+		}
+		alert(msj);
 		rx=0;
 		ctx.clearRect(0, 0, 700, 36);
 		crearCabeza(ancho, 0,0);
@@ -261,6 +309,142 @@ function f_insertarFinal () {
 	}, 500);
 }
 
+function f_modificar () {
+	var dato=prompt("Escriba el dato a modificar",
+		lista[Math.floor(Math.random()*(lista.length - 0))]);
+	if (dato!=null) {
+		intervalo = setInterval(function () {
+			recorriendo(dato);
+		}, 500);
+	};
+}
+
+function f_eliminarNodo () {
+	var dato=prompt("Escriba el dato a modificar",
+		lista[Math.floor(Math.random()*(lista.length - 0))]);
+	if (dato!=null) {
+		if (lista[0]==dato) {
+			f_eliminarInicio();
+		} else{
+			intervalo = setInterval(function () {
+				eliminar(dato);
+			}, 500);
+		};
+	};
+}
+
+function eliminar(dato) {
+	var ancho = 100 + (lista.length * (-8));
+	if(rx<lista.length){
+		
+		var hueco = ancho;
+		var dx0, dx1;
+		if (rx==0) {
+			dx0=1;
+		} else{
+			dx0 = (ancho*(rx-1)) + (hueco*(rx)) + (ancho*0.3);
+		};
+		dx1 = (ancho*rx) + (hueco*(rx+1)) + (ancho*0.3);
+		ctx.clearRect(0, 0, 700, 30);
+		
+		ctx.fillStyle = "rgb(200,0,0)";
+	    ctx.fillRect (dx0, 3, 20, 20);
+
+	    ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+	    ctx.fillRect (dx1, 15, 20, 20);
+	    if(lista[rx]==dato){
+	    	
+	    	var x = (ancho*rx) + (hueco*(rx+1));
+	    	var y = 50;
+	    	crearNodo(x,y,dato);
+	    	x = (ancho*(rx-1)) + (hueco*(rx));
+	    	crearNodo(x,y,lista[rx-1]);
+	    	var puntos = [
+		    		new Punto(x+(ancho*0.9), y + (ancho*0.5)), 
+		    		new Punto(x+(ancho*0.9), y + (2*ancho)),
+		    		new Punto(x+(ancho*3.4), y + (2*ancho)),
+		    		new Punto(x+(ancho*3.4), y + (ancho*0.5)),
+		    		new Punto(x+(ancho*3.9), y + (ancho*0.5)),
+			];
+			var linea=new Linea(puntos);
+			if (rx<lista.length - 1) {
+				linea.estilo="#000";
+			} else{
+				linea.estilo="#d00";
+			};
+		    linea.trazarFlecha();
+
+		    x = (ancho*rx) + (hueco*(rx+1));
+		    puntos=[
+		    	new Punto(x-10, y -10),
+		    	new Punto(x+ ancho +10, y +ancho +10)
+		    ];
+		    linea.flecha=false;
+		    linea.estilo="#e30";
+		    linea.puntos=puntos;
+		    linea.trazarFlecha();
+		    puntos=[
+		    	new Punto(x-10, y +ancho +10),
+		    	new Punto(x + ancho +10, y -10)
+		    ];
+		    linea.puntos=puntos;
+		    linea.trazarFlecha();
+		    lista.splice(rx, 1);
+		    clearInterval(intervalo);
+
+		    setTimeout(function(){
+				inicio();
+			},1800);		    
+	    }else{
+			rx++;
+	    }
+	}else{
+		clearInterval(intervalo);
+		var msj = "Se ha recorrido toda la lista y";
+		if (dato!=null) {
+			msj+="\nno se ha encotrado el dato ' "+dato+" '"; 
+		}
+		alert(msj);
+		rx=0;
+		ctx.clearRect(0, 0, 700, 36);
+		crearCabeza(ancho, 0,0);
+	}
+	
+}
+
+function f_eliminarInicio () {
+	var ancho = 100 + (lista.length * (-8));
+	var x = ancho;
+	var y = 50;
+	crearNodo(x,y,lista[0]);
+    var puntos=[
+    	new Punto(x-10, y -10),
+    	new Punto(x+ ancho +10, y +ancho +10)
+    ];
+    var linea=new Linea(puntos);
+    linea.flecha=false;
+    linea.estilo="#e30";
+
+    linea.trazarFlecha();
+    puntos=[
+    	new Punto(x-10, y +ancho +10),
+    	new Punto(x + ancho +10, y -10)
+    ];
+    linea.puntos=puntos;
+    linea.trazarFlecha();
+    lista.splice(0, 1);
+    crearCabeza(ancho, 2*x, 0);
+    setTimeout(function(){
+		inicio();
+	},1800);
+}
+
+function f_eliminarFinal () {
+	intervalo = setInterval(function () {
+		eliminar(lista[lista.length - 1]);
+	}, 500);
+}
+
 function agregarListener () {
 	var boton=document.getElementById("crear-nodo");
 	boton.addEventListener("click", f_crearNodo);
@@ -272,6 +456,25 @@ function agregarListener () {
 	boton.addEventListener("click", f_insertarDespues);
 	boton=document.getElementById("insertar-final");
 	boton.addEventListener("click", f_insertarFinal);
+	boton=document.getElementById("modificar-nodo");
+	boton.addEventListener("click", f_modificar);
+	boton=document.getElementById("eliminar-nodo");
+	boton.addEventListener("click", f_eliminarNodo);
+	boton=document.getElementById("eliminar-inicio");
+	boton.addEventListener("click", f_eliminarInicio);
+	boton=document.getElementById("eliminar-final");
+	boton.addEventListener("click", f_eliminarFinal);
+}
+
+function actualizarLabel () {
+	var label=document.getElementById('lista');
+	label.innerHTML="";
+	for (var i = 0; i < lista.length; i++) {
+		label.innerHTML+=lista[i];
+		if(i<lista.length - 1){
+			label.innerHTML+=", ";
+		}
+	};
 }
 
 function caracterAleat () {
@@ -304,6 +507,7 @@ var Linea = function (cordenadas) {
 	this.anchoLinea = 2;
 	this.puntos = cordenadas;
 	this.redonda = true;
+	this.flecha = true;
 	this.radio = 0.2*(lista.length * (32 - (4*lista.length)));
 	this.angulo = 30;
 
@@ -325,21 +529,22 @@ var Linea = function (cordenadas) {
 			ctx.closePath();
 			//trazar punta de flecha
 			//la punta es a la derecha solamente, falta arreglar el plano
+			if (this.flecha) {
+				var x = this.puntos[this.puntos.length-1].x;
+				var y = this.puntos[this.puntos.length-1].y;
+				ctx.beginPath();
 
-			var x = this.puntos[this.puntos.length-1].x;
-			var y = this.puntos[this.puntos.length-1].y;
-			ctx.beginPath();
-
-			ctx.moveTo(x,y);
-			var dx = (this.radio ) * (Math.cos((180-this.angulo)/180*Math.PI));
-			var dy = (this.radio ) * (Math.sin((180-this.angulo)/180*Math.PI));
-			ctx.lineTo(x + dx, y + dy);
-			ctx.moveTo(x,y);
-			dx = (this.radio ) * (Math.cos((180+this.angulo)/180*Math.PI));
-			dy = (this.radio ) * (Math.sin((180+this.angulo)/180*Math.PI));
-			ctx.lineTo(x + dx, y + dy);
-			ctx.stroke();
-			ctx.closePath();
+				ctx.moveTo(x,y);
+				var dx = (this.radio ) * (Math.cos((180-this.angulo)/180*Math.PI));
+				var dy = (this.radio ) * (Math.sin((180-this.angulo)/180*Math.PI));
+				ctx.lineTo(x + dx, y + dy);
+				ctx.moveTo(x,y);
+				dx = (this.radio ) * (Math.cos((180+this.angulo)/180*Math.PI));
+				dy = (this.radio ) * (Math.sin((180+this.angulo)/180*Math.PI));
+				ctx.lineTo(x + dx, y + dy);
+				ctx.stroke();
+				ctx.closePath();
+			};
 
 		} else{};
 	}

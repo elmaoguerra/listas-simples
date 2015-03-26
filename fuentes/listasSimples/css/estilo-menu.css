@@ -1,37 +1,40 @@
 body{
 	
-	background-color: #170805;
+	/*background-color: #170805;*/
 	background-size: 100%;
 	text-align: center;
 }
 
 #marco{
-	background-image: url('../images/fondo.jpg');
+	background-image: url('../images/fondo2.jpg');
+	background-size: inherit;
 	/*background-image: url('http://fondox.net/0/4029');*/
 	
 	background-repeat: repeat no-repeat;
-	height: 883px;
+	/*height: 883px;*/
 	/*position: fixed;*/
 }
 
 footer{
-	background-image: url('../images/piso.jpg') ;
+	background-image: url('../images/teclado-mouse.jpg') ;
+	background-repeat: no-repeat;
+	background-size: inherit;
 	/*display: block;*/
 	bottom: 0px;
-	height: 140px;
+	height: 165px;
 	width: 100%;
 	/*position: fixed;*/
 }
 
 header {
-	background-color: #606080;
-	
+	background-color: #26CBA2;
 }
 
 header a{
 	color: #eee;
-	font-size: 3em;
+	font-size: 2em;
 	text-decoration: none;
+	text-shadow: 0px 0px 2px #e00;
 }
 
 .inline-block-top{
@@ -76,30 +79,61 @@ header a{
 }
 
 #canvas{
-	background-color: #fcecd3;
-	border: 5px solid #c0c0c0;
-	margin: 10px;
+	background-color: rgba(255, 255, 255, 0.89);
+	/*border: 5px solid #9EC89D;*/
 	margin-top: 30px;
+}
+
+#enunciado{
+	color: #eee;
+	width: 90%;
+}
+
+#lista, #lista_inicial{
+	color: #eee;
+	background-color: rgba(0, 0, 0, 0.7);
+	display: inline-block;
+	padding: 0.5em;
+}
+
+#sec-botones button{
+	display: block;
+	margin: 0.8em;
 }
 
 #sec-canvas{
 	/*background-color: #c0c0c0;*/
 	padding-bottom: 10px;
 }
-
+#marco label{
+	color: #eee;
+	display: block;
+}
 #sec-codigo{
-	background-color: #0cf;
-	list-style: none;
+	display: block;
+	/*list-style: none;*/
 	margin-top: 2em;
+	width: 90%;
 }
 
 #sec-codigo li{
+	background-color: rgba(25, 62, 51, 0.78);
 	border-radius: 0.5em;
+	/*color: #eee;*/
 	display: block;
+	margin: 0.1em;
+	padding: 0.3em;
 }
 
-#sec-codigo ul {	
+#sec-codigo pre{
+	text-align: left;
+	background-color: transparent;
+}
+
+#sec-codigo ul{
+	background-color: #0cf;
+	border-radius: 0.5em;	
 	margin: 1em;
-	padding: 0.5em 1px;
-	list-style: none;
+	padding: 0.5em 1em;
+	/*list-style: none;*/
 }
