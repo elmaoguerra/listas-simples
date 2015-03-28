@@ -1,19 +1,26 @@
 body{
 	
-	/*background-color: #170805;*/
+	/*background-image: url('../images/fondo2.jpg');*/
+	background-color: #fefefe;
+	background-repeat: repeat no-repeat;
 	background-size: 100%;
 	text-align: center;
 }
 
 #marco{
-	background-image: url('../images/fondo2.jpg');
-	background-size: inherit;
-	/*background-image: url('http://fondox.net/0/4029');*/
 	
-	background-repeat: repeat no-repeat;
+	/*background-image: url('http://fondox.net/0/4029');*/
+	background-color: rgba(0,0,0,0.5);
+	color: #eee;
+	margin: 0 auto;
+	padding: 1em;
+	position: center;
+	width: 90%;
 	/*height: 883px;*/
 	/*position: fixed;*/
 }
+
+
 
 footer{
 	background-image: url('../images/teclado-mouse.jpg') ;
@@ -21,7 +28,7 @@ footer{
 	background-size: inherit;
 	/*display: block;*/
 	bottom: 0px;
-	height: 165px;
+	height: 140px;
 	width: 100%;
 	/*position: fixed;*/
 }
@@ -30,11 +37,20 @@ header {
 	background-color: #26CBA2;
 }
 
-header a{
+header h1{
 	color: #eee;
 	font-size: 2em;
-	text-decoration: none;
 	text-shadow: 0px 0px 2px #e00;
+}
+header h1 a{
+	text-decoration: none;
+}
+article, h2, h3, p{
+	text-align: left;
+}
+
+article{
+	padding-left: 3em;
 }
 
 .inline-block-top{
@@ -78,10 +94,12 @@ header a{
 	background-color: #683434;
 }
 
-#canvas{
+.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+
+.canvas{
 	background-color: rgba(255, 255, 255, 0.89);
 	/*border: 5px solid #9EC89D;*/
-	margin-top: 30px;
+	margin: 0;
 }
 
 #enunciado{
@@ -89,31 +107,33 @@ header a{
 	width: 90%;
 }
 
-#lista, #lista_inicial{
+.lista_inicial{
 	color: #eee;
 	background-color: rgba(0, 0, 0, 0.7);
 	display: inline-block;
 	padding: 0.5em;
 }
+.div-botones{
+	padding: 2em;
+}
 
-#sec-botones button{
+.div-botones button{
+	color: #222;
 	display: block;
 	margin: 0.8em;
 }
 
-#sec-canvas{
+.sec-canvas{
 	/*background-color: #c0c0c0;*/
 	padding-bottom: 10px;
 }
 #marco label{
 	color: #eee;
-	display: block;
 }
 #sec-codigo{
 	display: block;
 	/*list-style: none;*/
-	margin-top: 2em;
-	width: 90%;
+	margin: 0;
 }
 
 #sec-codigo li{
@@ -126,8 +146,9 @@ header a{
 }
 
 #sec-codigo pre{
-	text-align: left;
 	background-color: transparent;
+	margin: 0px;
+	text-align: left;
 }
 
 #sec-codigo ul{

@@ -3,13 +3,16 @@
 <head>
 	<meta charset="utf-8">
 	<title>Animando</title>
-	<link rel="stylesheet" type="text/css" href="../../css/normalize.css">
-	<link rel="stylesheet" type="text/css" href="../../css/estilo-menu.css">
-	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?skin=desert"></script>
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/estilo-menu.css">
+	<?= $js;?>
+	<script>$(function() {$( "#pseudo-codigo" ).sortable({
+	placeholder: "ui-state-highlight"});
+	$( "#pseudo-codigo" ).disableSelection();});</script>
 </head>
 <body>
 	<header>
-		<a class="inline-block-top" href="#" >Listas Simplemente<br/>Enlazadas</a>
+		<h1><a class="inline-block-top" href="#" >Listas Simplemente<br/>Enlazadas</a></h1>
 		<div id="perfil" class="inline-block-top">Datos del Perfil </div>
 	</header>
 	<nav id="sec-menu">
@@ -31,11 +34,11 @@
 		<p id="enunciado"><?= $enunciado; ?></p>
 		<label id="lista_inicial" ><?= $lista; ?></label>
 		<section id="sec-canvas" class="inline-block-top">
-			<canvas id="canvas" width="700" height="300"></canvas>
+			<canvas id="canvas-recorrer" class="canvas" width="700" height="300"></canvas>
 			<label>Dato(s) en la Lista:
 				<!-- <label id="lista" >m, a, o</label> -->
 				<label id="lista" ><?= $lista; ?></label>
-				<script type="text/javascript" src="../../js/animacion/animacion.js"></script>
+				<script type="text/javascript" src="<?php echo base_url();?>js/animacion/animacion.js"></script>
 			</label>
 		</section>
 		<div id="sec-botones" class="inline-block-top">
@@ -53,9 +56,9 @@
 		<section id="sec-codigo">
 			<ul id="pseudo-codigo" class="inline-block-top">
 			    <li>Aquí van las líneas En Pseudo-código</li>
-			    <li>afagasg</li>
-			    <li>sdfgswh</li>
-			    <li>htesas</li>
+			    <?php foreach ($sentencias as $key) {?>
+			    	<li><pre class="prettyprint lang-c"><?=$key;?></pre></li>	
+			    <?php }?>
 			</ul>
 			<ul id="codigo" class="inline-block-top">
 			    <li>Aquí van las líneas de C++</li>

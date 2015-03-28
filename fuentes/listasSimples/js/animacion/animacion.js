@@ -20,17 +20,6 @@ function inicio () {
 	crearCabeza(ancho, 0, 0);
 	
 	crearLista(ancho);
-	var codigo=document.getElementById('codigo').childNodes[3].childNodes;
-	console.log(codigo);
-	var codigo = document.getElementById('codigo').childNodes[3];
-	console.log(codigo.firstElementChild);
-	var texto=codigo.textContent;
-	var aux = texto.split('\n');
-	console.log(aux);
-
-	var otro = document.getElementsByTagName('OL');
-	console.log(otro);
-
 }
 
 function crearCabeza (ancho, x, y) {
@@ -447,23 +436,41 @@ function f_eliminarFinal () {
 
 function agregarListener () {
 	var boton=document.getElementById("crear-nodo");
-	boton.addEventListener("click", f_crearNodo);
+	if(boton!=null) {
+		boton.addEventListener("click", f_crearNodo);
+	}
 	boton=document.getElementById("recorrer");
-	boton.addEventListener("click", f_recorrerLista);
+	if(boton!=null) {
+		boton.addEventListener("click", f_recorrerLista);
+	}
 	boton=document.getElementById("insertar-inicio");
-	boton.addEventListener("click", f_insertarInicio);
+	if (boton!=null) {
+		boton.addEventListener("click", f_insertarInicio);
+	};
 	boton=document.getElementById("insertar-despues");
-	boton.addEventListener("click", f_insertarDespues);
+	if (boton!=null) {
+		boton.addEventListener("click", f_insertarDespues);
+	};
 	boton=document.getElementById("insertar-final");
-	boton.addEventListener("click", f_insertarFinal);
+	if (boton!=null) {
+		boton.addEventListener("click", f_insertarFinal);
+	};
 	boton=document.getElementById("modificar-nodo");
-	boton.addEventListener("click", f_modificar);
+	if (boton!=null) {
+		boton.addEventListener("click", f_modificar);
+	};
 	boton=document.getElementById("eliminar-nodo");
-	boton.addEventListener("click", f_eliminarNodo);
+	if (boton!=null) {
+		boton.addEventListener("click", f_eliminarNodo);
+	};
 	boton=document.getElementById("eliminar-inicio");
-	boton.addEventListener("click", f_eliminarInicio);
+	if (boton!=null) {
+		boton.addEventListener("click", f_eliminarInicio);
+	};
 	boton=document.getElementById("eliminar-final");
-	boton.addEventListener("click", f_eliminarFinal);
+	if (boton!=null) {
+		boton.addEventListener("click", f_eliminarFinal);
+	};
 }
 
 function actualizarLabel () {
