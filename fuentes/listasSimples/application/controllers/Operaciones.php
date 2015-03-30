@@ -56,18 +56,18 @@ class Operaciones extends CI_Controller {
 		}
 
 		$aux=explode("\r\n", $codigoAct);
-		
+		$datos['titulo'] = "Modificación en una lista";
 		$datos['lineas'] = $codigoAct;
 		$datos['sentencias'] = $aux;
-
-		$datos['js'] = 	"<script src=\"https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?autoload=true&skin=desert\"></script>".
-						"<script src=\"//code.jquery.com/jquery-1.10.2.js\"></script>".
-						"<script src=\"//code.jquery.com/ui/1.11.4/jquery-ui.js\"></script>";
-		//$lista="a, b, c, d";
-		//$datos['lista']="A,b,c,d";
-		$this->load->view('operaciones', $datos);
 		
-		 //log_message('debug', 'JJOC prueba log');
+		$url_base = base_url();
+		$datos['js'] = 	"<script type=\"text/javascript\" src=\"".base_url()."js/animacion/jquery-2.1.3.min.js\"></script>".
+						"<script type=\"text/javascript\" src=\"".base_url()."js/animacion/jquery-ui.min.js\"></script>".
+						"<script>\$(function() {\$( \"#pseudo-codigo\" ).sortable({placeholder: \"ui-state-highlight\"});
+							\$( \"#pseudo-codigo\" ).disableSelection();});</script>";
+		$datos['contenido'] = "operaciones";
+
+		$this->load->view('plantillas/plantilla', $datos);
 		
 	}
 
@@ -104,7 +104,7 @@ class Operaciones extends CI_Controller {
 		$datos['lineas'] = $codigoAct;
 		$datos['sentencias'] = $aux;
 		$datos['js'] = 	"";
-		$datos['contenido'] = "recorrer";
+		$datos['contenido'] = "operaciones/recorrer";
 
 		$this->load->view('plantillas/plantilla', $datos);
 	}
@@ -142,7 +142,7 @@ class Operaciones extends CI_Controller {
 		$datos['lineas'] = $codigoAct;
 		$datos['sentencias'] = $aux;
 		$datos['js'] = 	"";
-		$datos['contenido'] = "insertar";
+		$datos['contenido'] = "operaciones/insertar";
 
 		$this->load->view('plantillas/plantilla', $datos);
 	}
@@ -180,8 +180,15 @@ class Operaciones extends CI_Controller {
 		$datos['lineas'] = $codigoAct;
 		$datos['sentencias'] = $aux;
 		$datos['js'] = 	"";
-		$datos['contenido'] = "eliminar";
+		$datos['contenido'] = "operaciones/eliminar";
 
 		$this->load->view('plantillas/plantilla', $datos);
+	}
+
+	function enviar()
+	{
+		$a=$this->input->post();
+		var_dump($a);
+
 	}
 }

@@ -10,12 +10,12 @@ body{
 #marco{
 	
 	/*background-image: url('http://fondox.net/0/4029');*/
-	background-color: rgba(0,0,0,0.5);
-	color: #eee;
+	background-color: #D4E7D9;
+	color: #000;
 	margin: 0 auto;
 	padding: 1em;
 	position: center;
-	width: 90%;
+	width: 95%;
 	/*height: 883px;*/
 	/*position: fixed;*/
 }
@@ -28,23 +28,30 @@ footer{
 	background-size: inherit;
 	/*display: block;*/
 	bottom: 0px;
-	height: 140px;
+	/*height: 100px;*/
 	width: 100%;
 	/*position: fixed;*/
 }
 
 header {
-	background-color: #26CBA2;
+	background-color: #25D4C7;
+	padding: 0.5em 1em;
+	text-align: right;
 }
 
 header h1{
 	color: #eee;
+	float: left;
 	font-size: 2em;
+	margin: 0;
+	text-align: center;
 	text-shadow: 0px 0px 2px #e00;
 }
 header h1 a{
+	color: #eee;
 	text-decoration: none;
 }
+
 article, h2, h3, p{
 	text-align: left;
 }
@@ -59,26 +66,27 @@ article{
 
 }
 .menu {	
-	background-color: #2C0606;
-	border-radius: 0.5em;
+	background-color: rgb(189, 252, 225);
 	margin: 0;
-	padding: 0.5em 1px;
+	padding: 0.5em;
 	list-style: none;
+	background-color: #2EC3B8;
 }
 
 .menu li a{
-	background-color: #269CCB;
 	border-radius: 0.1em;
-	color: #FFF7E6;
+	color: #000;
 	display: block;
 	margin: 1px 0.5em;
 	padding: 6px;
+
 	text-decoration: none;
 }
 
 .menu li a:hover{
-	border: 1px solid;
-	background-color: #9CCB26;
+	background-color: #30DA86;
+	color: #eef;
+	text-shadow: 1px 0px 1px #214426;
 }
 
 .menu li:hover > ul{
@@ -94,16 +102,20 @@ article{
 	background-color: #683434;
 }
 
-.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+.ui-state-highlight { 
+	border: 2px dashed #eee;
+	height: 1.5em; 
+	line-height: 1.2em; 
+}
 
 .canvas{
-	background-color: rgba(255, 255, 255, 0.89);
-	/*border: 5px solid #9EC89D;*/
+	background-color: rgba(37, 212, 112, 0.75);
+	box-shadow: 0px 0px 15px #214426;
+	border-radius: 0.5em;
 	margin: 0;
 }
 
 #enunciado{
-	color: #eee;
 	width: 90%;
 }
 
@@ -114,7 +126,8 @@ article{
 	padding: 0.5em;
 }
 .div-botones{
-	padding: 2em;
+	padding: 2em 0 2em 1em;
+	height: 267px;
 }
 
 .div-botones button{
@@ -125,7 +138,7 @@ article{
 
 .sec-canvas{
 	/*background-color: #c0c0c0;*/
-	padding-bottom: 10px;
+	/*padding-bottom: 10px;*/
 }
 #marco label{
 	color: #eee;
@@ -139,6 +152,7 @@ article{
 #sec-codigo li{
 	background-color: rgba(25, 62, 51, 0.78);
 	border-radius: 0.5em;
+	cursor: pointer;
 	/*color: #eee;*/
 	display: block;
 	margin: 0.1em;
@@ -153,7 +167,8 @@ article{
 
 #sec-codigo ul{
 	background-color: #0cf;
-	border-radius: 0.5em;	
+	border-radius: 0.5em;
+	box-shadow: 0px 0px 15px #214426;	
 	margin: 1em;
 	padding: 0.5em 1em;
 	/*list-style: none;*/

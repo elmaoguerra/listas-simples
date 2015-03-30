@@ -69,7 +69,7 @@ function dibujarNodo (ancho, dato, i) {
 	];
 	var linea=new Linea(puntos);
 	if (i<lista.length -1) {
-		linea.estilo="#000";
+		linea.estilo="#efe";
 	} else{
 		linea.estilo="#d00";
 	};
@@ -510,7 +510,7 @@ var Punto=function (x, y) {
 }
 
 var Linea = function (cordenadas) {
-	this.estilo = "#000";
+	this.estilo = "#efe";
 	this.anchoLinea = 2;
 	this.puntos = cordenadas;
 	this.redonda = true;
@@ -520,6 +520,8 @@ var Linea = function (cordenadas) {
 
 	this.trazarFlecha=function () {
 		if (this.puntos.length>0) {
+			ctx.shadowBlur = 2;
+			ctx.shadowColor = "#000";
 			ctx.strokeStyle=this.estilo;
 			ctx.lineWidth=this.anchoLinea;
 			if (this.redonda) {
