@@ -10,16 +10,29 @@
 </head>
 <body>
 	<header>
-	<h1 class="inline-block-top"><a  href="#" >Listas Simplemente<br/>Enlazadas</a></h1>
+	<h1 class="inline-block-top"><a  href="<?php echo base_url();?>" >Listas Simplemente<br/>Enlazadas</a></h1>
 	<nav id="sec-menu" class="inline-block-top">
 	    <ul class="menu">
-	        <li class="inline-block-top"><a href="#">Definición</a></li>
+	        <li class="inline-block-top"><a href="<?php echo base_url();?>definicion">Definición</a></li>
 	        <li class="inline-block-top"><a href="<?php echo base_url();?>operaciones">Operaciones</a></li>
-	     	<li class="inline-block-top"><a href="#">Ejercicios</a></li>
-	     	<li class="inline-block-top"><a href="#">Perfil</a></li>
-	     	<li class="inline-block-top"><a href="#">Salir</a></li>
+	     	<li class="inline-block-top"><a href="<?php echo base_url();?>ejercicios">Ejercicios</a></li>
+	     	<?php if($this->session->userdata('codigo')): ?>
+	     	<li class="inline-block-top">
+	     		<?php $nombre = $this->session->userdata('nombre');?>
+	     		<a class="perfil" href="<?php echo base_url();?>perfil">
+	     			<?php echo  $nombre;?>
+	     		</a>
+	     	</li>
+	     	<?php endif ?>
 	    </ul>
 	</nav>
-	<div id="perfil">Bienvenido: Usuario</div>	
+	<div id="perfil">
+	<?php if($this->session->userdata('codigo')): ?>
+	Bienvenido: <?php echo $this->session->userdata('codigo') ?>
+	<a href="<?php echo base_url();?>salir">Cerrar Sesión</a>
+	<?php else:?>
+	<a href="<?php echo base_url();?>ingresar">Iniciar Sesión</a>
+	<?php endif ?>
+	</div>	
 	</header>
 	

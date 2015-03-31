@@ -6,27 +6,11 @@ class Operaciones extends CI_Controller {
 
 	function __construct(){ 
 		parent::__construct(); 
-		$this->load->helper('url');	 
 		$this->load->model('ejercicio_model'); 
 		$this->load->model('sentencia_model'); 
 		$this->load->model('operacion_model'); 
 	} 
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
 	public function index()
 	{
 		$id = 9;
@@ -56,15 +40,11 @@ class Operaciones extends CI_Controller {
 		}
 
 		$aux=explode("\r\n", $codigoAct);
-		$datos['titulo'] = "Modificación en una lista";
+		$datos['titulo'] = "Operaciones en una lista";
 		$datos['lineas'] = $codigoAct;
 		$datos['sentencias'] = $aux;
 		
-		$url_base = base_url();
-		$datos['js'] = 	"<script type=\"text/javascript\" src=\"".base_url()."js/animacion/jquery-2.1.3.min.js\"></script>".
-						"<script type=\"text/javascript\" src=\"".base_url()."js/animacion/jquery-ui.min.js\"></script>".
-						"<script>\$(function() {\$( \"#pseudo-codigo\" ).sortable({placeholder: \"ui-state-highlight\"});
-							\$( \"#pseudo-codigo\" ).disableSelection();});</script>";
+		$datos['js'] = 	"";
 		$datos['contenido'] = "operaciones";
 
 		$this->load->view('plantillas/plantilla', $datos);
@@ -183,12 +163,5 @@ class Operaciones extends CI_Controller {
 		$datos['contenido'] = "operaciones/eliminar";
 
 		$this->load->view('plantillas/plantilla', $datos);
-	}
-
-	function enviar()
-	{
-		$a=$this->input->post();
-		var_dump($a);
-
 	}
 }

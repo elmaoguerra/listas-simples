@@ -28,7 +28,7 @@ footer{
 	background-size: inherit;
 	/*display: block;*/
 	bottom: 0px;
-	/*height: 100px;*/
+	height: 100px;
 	width: 100%;
 	/*position: fixed;*/
 }
@@ -59,11 +59,17 @@ article, h2, h3, p{
 article{
 	padding-left: 3em;
 }
-
+.codigo{
+	text-align: left;
+}
+.codigo pre{ 
+	padding: 1em;
+	font-size: 1.15em;
+	margin: 0;
+}
 .inline-block-top{
 	display: inline-block;
 	vertical-align: top;
-
 }
 .menu {	
 	background-color: rgb(189, 252, 225);
@@ -87,6 +93,7 @@ article{
 	background-color: #30DA86;
 	color: #eef;
 	text-shadow: 1px 0px 1px #214426;
+	box-shadow: 0px 0px 2px #214426;
 }
 
 .menu li:hover > ul{
@@ -100,6 +107,12 @@ article{
 
 .menu ul li a{
 	background-color: #683434;
+}
+
+.nota{
+	background: #efe;
+	display: block;
+	padding: 1em;
 }
 
 .ui-state-highlight { 
@@ -134,6 +147,15 @@ article{
 	color: #222;
 	display: block;
 	margin: 0.8em;
+}
+.perfil{
+	background-color: #35E6B4;
+}
+
+.referencia{
+	text-align: right;
+	font-size: 0.8em;
+	font-style: italic;
 }
 
 .sec-canvas{

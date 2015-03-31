@@ -1,5 +1,4 @@
 <?php
-
 class LoginController extends CI_Controller{
 
 	public function __construct(){
@@ -7,37 +6,36 @@ class LoginController extends CI_Controller{
 	}
 
 	public function index(){
-		$this->load->view('login');
+		if(!$this->session->userdata('login')){
+			$this->load->view('login');
+		}else{
+			redirect(base_url().'definicion');
+		}
 	}
 
 	public function very_session()
 	{
 		if($this->input->post('submit')){
 			$this->load->model('LoginModel');
-			$variable = $this->LoginModel->very_session();
+			$cod = $this->security->xss_clean($this->input->post('user'));
+			$pass = md5($this->security->xss_clean($this->input->post('pass')));
+			
+			$variable = $this->LoginModel->very_session($cod, $pass);
 
-			if($variable == true){
-				session_start();
-				$variables = array(
-								'nombre' => $variable->nombre,
-								'grupo_id' => $variable->grupo_id
-							);
-				$this->session->set_userdata($variables);
-				redirect(base_url().'index.php/PrincipalController');
+			if($variable === TRUE){
+				redirect(base_url());
 			}else{
-				$data = array('mensaje' => 'Usuario o contraseña incorrectos');
-				$this->load->view('login',$data);
+				 redirect(base_url().'ingresar');
 			}
 
 		}else{
-			redirect(base_url().'index.php/LoginController');
+			redirect(base_url().'ingresar');
 		}
 	}
 
 	public function close_session(){
-		session_destroy();
-		redirect(base_url().'index.php/LoginController');
+		//session_destroy();
+		$this->session->sess_destroy();
+		redirect(base_url().'ingresar');
 	}
 }
-
-?>

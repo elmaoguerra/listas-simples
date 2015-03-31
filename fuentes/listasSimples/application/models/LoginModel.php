@@ -7,15 +7,20 @@ class LoginModel extends CI_Model{
     }
 
 
-	public function very_session(){
-		$consulta = $this->db->get_where('usuario',array(
-											'nombre'=>$this->input->post('user',TRUE),
-											'password'=>$this->input->post('pass',TRUE)));
-		if($consulta->num_rows() == 1)
+	public function very_session($codigo, $password){
+		$consulta = $this->db->get_where('usuario',
+			array('codigo'=>$codigo,
+				'password'=>$password
+			));
+		if($consulta->num_rows() === 1)
 		{
-			return $consulta->row();
+			$var = $consulta->row();
+			$this->session->set_userdata('codigo', $var->codigo);
+			$this->session->set_userdata('nombre', $var->nombre);
+			$this->session->set_userdata('grupo', $var->grupo_id);
+			return TRUE;
 		}else{
-			return false;
+			$this->session->set_flashdata('mensaje', 'Código y/o contraseña invalidos.');
 		}
 
 	}

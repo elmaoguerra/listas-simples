@@ -8,6 +8,6 @@
 	<h3>GRUPO: <?= $grupousuariosession;?></h3>
 	<h3>ROL: <?= $rolsession;?></h3>
 
-	<a href="<?= base_url().'index.php/LoginController/close_session'?>">Cerrar Sesión</a>
+	<a href="<?= base_url().'salir'?>">Cerrar Sesión</a>
 </body>
 </html>
