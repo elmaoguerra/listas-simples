@@ -2,11 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Ejercicios extends CI_Controller {
+
 	function __construct(){ 
 		parent::__construct(); 
 		$this->load->model('ejercicio_model'); 
 		$this->load->model('sentencia_model'); 
-		$this->load->model('operacion_model'); 
+		$this->load->model('operacion_model');
 	}
 
 	public function index()
@@ -36,8 +37,7 @@ class Ejercicios extends CI_Controller {
 				$codigoAct=$codigoAct.$row->instruccion;
 			}
 		}
-
-		$aux=explode("\r\n", $codigoAct);
+		$aux=explode("\n", $codigoAct);
 		$datos['titulo'] = "Modificación en una lista";
 		$datos['lineas'] = $codigoAct;
 		$datos['sentencias'] = $aux;
@@ -46,15 +46,39 @@ class Ejercicios extends CI_Controller {
 						"<script type=\"text/javascript\" src=\"".base_url()."js/animacion/jquery-ui.min.js\"></script>".
 						"<script>\$(function() {\$( \"#pseudo-codigo\" ).sortable({placeholder: \"ui-state-highlight\"});
 							\$( \"#pseudo-codigo\" ).disableSelection();});</script>";
+		$datos['id_ejercicio'] = $id;
 		$datos['contenido'] = "ejercicios";
 
 		$this->load->view('plantillas/plantilla', $datos);
 	}
 
-	function enviar()
+	public function enviar()
 	{
-		$a=$this->input->post();
-		var_dump($a);
+		$codigo=$this->security->xss_clean($this->input->post('sentencias[]'));
+		$id=$this->security->xss_clean($this->input->post('ejercicio'));
+		
+		//carga de sentencias
+		$codigoBD="";
+		$sentencias = $this->sentencia_model->consultarsentenciaByEjercicio($id); 
+		if($sentencias!=false){ 
+			foreach ($sentencias->result() as $row) 
+			{	
+				$codigoBD=$codigoBD.(($row->instruccion));
+			}
+		}
+		var_dump($codigoBD);//106
+		$aux=explode("\r\n", $codigoBD);
+		var_dump($aux);//101
+		$cade="";
+		foreach ($codigo as $row) 
+		{	
+			$cade=$cade.(trim($row));
+		}
 
+		var_dump(trim(implode("", $aux)));//101
+		var_dump($codigo);//103
+		var_dump($cade);//83
 	}
 }
+
+//void recorrer(Nodo *ptrLista) {while (ptrLista != NULL){ptrLista = ptrLista->sig;}}
