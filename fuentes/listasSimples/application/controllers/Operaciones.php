@@ -5,7 +5,9 @@ class Operaciones extends CI_Controller {
 
 
 	function __construct(){ 
-		parent::__construct(); 
+		parent::__construct();
+		$this->load->model('LoginModel', 'acceso');
+		$this->acceso->_validar_sesion();
 		$this->load->model('ejercicio_model'); 
 		$this->load->model('sentencia_model'); 
 		$this->load->model('operacion_model'); 

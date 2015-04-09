@@ -24,6 +24,10 @@ class LoginModel extends CI_Model{
 		}
 
 	}
-}
 
-?>
+	function _validar_sesion(){
+		if(!$this->session->userdata('codigo')){
+			redirect(base_url().'ingresar');
+		}
+	}
+}

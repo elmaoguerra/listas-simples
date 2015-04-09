@@ -48,7 +48,4 @@ class sentencia_model extends CI_Model{
 		$this->db->delete('sentencia', array('ejercicio_id' => $idEjercicio)); 
 	}
 	 
-} 
- 
-?> 
-
+}

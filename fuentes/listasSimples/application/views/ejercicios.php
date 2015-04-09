@@ -1,11 +1,27 @@
 <main id="marco">
-	<h2>Práctica de Ejercicios</strong></h2>
-	<p>Intento <?php echo $this->session->flashdata('intentos'); ?> de 3</p>
-	<p id="enunciado">Enunciado: <?= $enunciado; ?></p>
-	<p>Lista Inicial: <label class="lista_inicial" ><?= $lista; ?></label>
+	<h2>Práctica de Ejercicios</h2>
+	<p id="enunciado" class="inline-block-top">
+		<strong>Enunciado:</strong><?= $enunciado; ?><br><br>
+		<strong>Lista Inicial: </strong><label class="lista_inicial" ><?= $lista; ?></label>
 	</p>
+	<div id="intentos" class="inline-block-top">
+		<?php if ($repite) :?>
+			<span id="intentos-x"></span>
+			<p id="intentos-error">Has tenido un Error<br>
+				Intenta de Nuevo</p>
+		<?php else :
+			// echo "<script type=\"text/javascript\">
+			// 	alert(\"Muy bien ".$this->session->userdata('nombre').":\n\n
+			// 		Has organizado las lineas correctamente!\n\n\t
+			// 		Intenta el siguiente ejercicio\");
+			// </script>";
+		?>
+		
+		<?php endif ?>
+		<p><strong>Intento <?php echo $this->session->flashdata('intentos'); ?> de 3</strong></p>
+	</div>
 	<section id="sec-codigo">
-		<form action="<?php echo base_url();?>ejercicios/enviar" method="post">
+		<form action="<?php echo base_url();?>ejercicios/error" method="post">
 			<input type="hidden" name="ejercicio" value="<?php echo $id_ejercicio;?>">
 		<h3>Pseudo-código</h3>
 		<ul id="pseudo-codigo" class="inline-block-top">
@@ -18,7 +34,7 @@
 		    <?php endif;
 		    endforeach?>
 		</ul>
-		<input type="submit"  value="Enviar">
+		<input id="enviar" type="submit"  value="Enviar">
 		</form>
 	</section>
 </main>

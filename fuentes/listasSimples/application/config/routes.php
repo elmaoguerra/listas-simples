@@ -56,3 +56,4 @@ $route['ingresar'] = 'loginController';
 $route['LoginController'] = 'ingresar';
 $route['salir'] = 'loginController/close_session';
 $route['ejercicios/index/(:any)'] = 'ejercicios';
+//$route['ejercicios/enviar'] = 'bien';

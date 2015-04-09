@@ -4,8 +4,10 @@
 	<meta charset="utf-8">
 	<title><?=$titulo;?></title>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/estilo-menu.css">
 	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?autoload=true&skin=desert"></script>
+	<script src="<?php echo base_url();?>js/prefixfree.min.js" type="text/javascript"></script>
 	<?=$js;?>
 </head>
 <body>

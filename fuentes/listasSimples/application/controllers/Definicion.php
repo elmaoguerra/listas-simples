@@ -5,7 +5,8 @@ class Definicion extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		 $this->_validar_session();
+		$this->load->model('LoginModel', 'acceso');
+		$this->acceso->_validar_sesion();
 	}
 
 	public function index()
@@ -15,11 +16,4 @@ class Definicion extends CI_Controller {
 		$datos['contenido'] = "definicion";
 		$this->load->view('plantillas/plantilla', $datos);	
 	}
-
-	function _validar_session(){
-		if(!$this->session->userdata('codigo')){
-			redirect(base_url().'ingresar');
-		}
-	}
-
 }

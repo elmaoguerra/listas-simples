@@ -4,7 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Ejercicios extends CI_Controller {
 
 	function __construct(){ 
-		parent::__construct(); 
+		parent::__construct();
+		$this->load->model('LoginModel', 'acceso');
+		$this->acceso->_validar_sesion();
 		$this->load->model('ejercicio_model'); 
 		$this->load->model('sentencia_model'); 
 		$this->load->model('operacion_model');
@@ -45,8 +47,10 @@ class Ejercicios extends CI_Controller {
 			//shuffle($aux);
 			$this->session->set_flashdata('intentos', 1);
 			$this->session->keep_flashdata('intentos');
+			$datos['repite'] = FALSE;
 		}else{
 			$aux = $sentencias;
+			$datos['repite'] = TRUE;
 		}
 
 		$datos['titulo'] = "Ejercicios";
@@ -68,7 +72,11 @@ class Ejercicios extends CI_Controller {
 	{
 		$codigo=$this->security->xss_clean($this->input->post('sentencias[]'));
 		$id=$this->security->xss_clean($this->input->post('ejercicio'));
-
+		if($codigo=="" || $id==""){
+			redirect(base_url().'ejercicios');
+		}
+		$query = $this->ejercicio_model->consultarNombreOpById($id);
+		$nombre_op=$query->row()->name;
 		//carga de sentencias		
 		$codigoBD="";
 		$sentencias = $this->sentencia_model->consultarsentenciaByEjercicio($id); 
@@ -94,30 +102,46 @@ class Ejercicios extends CI_Controller {
 		// var_dump($codigoUsuario);//83
 
 		if($codigoBD === $codigoUsuario){
-			echo "son Iguales";
+			//echo "son Iguales";
 			return TRUE;
 		}else{
-			echo "son Diferentes";
+			// echo "son Diferentes";
 			$datos = array(
 				'id' => $id,
-				'codigo' =>$codigo
+				'codigo' =>$codigo,
+				'nombre_op' =>$nombre_op
 				);
 			return $datos;
 		}
 	}
 
-	public function enviar()
+	public function error()
 	{
 		$valida = $this->_validar();
 		if($valida === TRUE){
 			//Guardar_BD
-			//Cargar otro ejercicio
-
-			$this->index();
+			//Mensaje BIEN
+			redirect(base_url().'ejercicios/bien');
 		}else{
-			//Volver a cargar el ejercicio
-			$this->session->set_flashdata('intentos', $this->session->flashdata('intentos')+1);
-			$this->index($valida['id'], $valida['codigo']);
+			$intentos = $this->session->flashdata('intentos')+1;
+			$this->session->set_flashdata('intentos', $intentos);
+			$this->session->keep_flashdata('intentos');
+			if ($intentos<4) {
+				//Volver a cargar el ejercicio
+				$this->index($valida['id'], $valida['codigo']);
+			}else{
+				// 4 intentos
+				// Guardar_BD
+				// Redirigir
+				$op = $this->_definir_op($valida['nombre_op']);
+
+				$datos['titulo'] = "Debes Mejorar";
+				$datos['js'] = 	"";
+				$datos['contenido'] = "bien";
+				$datos['tipo'] = "mejorar";
+				$datos['enlace'] = $op;
+				$this->load->view('plantillas/plantilla', $datos);
+			}
 		}
 	}
 
@@ -146,6 +170,28 @@ class Ejercicios extends CI_Controller {
 		}
 		return FALSE;
 	}
-}
 
-//void recorrer(Nodo *ptrLista) {while (ptrLista != NULL){ptrLista = ptrLista->sig;}}
+	function bien()
+	{
+		//Deberia cargar solo si se realizo un correcto ejercicio
+		$datos['titulo'] = "Bien Hecho";
+		$datos['js'] = 	"";
+		$datos['contenido'] = "bien";
+		$datos['tipo'] = "bien";
+		$this->load->view('plantillas/plantilla', $datos);
+	}
+
+	function _definir_op($nombre)
+	{
+		$nombre = strtolower($nombre);
+		if (strpos($nombre, 'recorrer')!==FALSE || strpos($nombre, 'modificar')!==FALSE) {
+			return 'operaciones/modificar';
+		}elseif (strpos($nombre, 'insertar')!==FALSE) {
+			return 'operaciones/insertar';
+		}elseif (strpos($nombre, 'eliminar')!==FALSE) {
+			return 'operaciones/eliminar';
+		}else{
+			return 'operaciones';
+		}
+	}
+}

@@ -31,7 +31,15 @@ class ejercicio_model extends CI_Model{
 
 		if($query->num_rows() >0 ) return $query; 
 		else return false; 
-	} 
+	}
+
+	function consultarNombreOpById($id){
+		$sql="select operacion.name from operacion join ejercicio on ejercicio.operacion_id=operacion.id where ejercicio.id=?";
+		$query = $this->db->query($sql, array($id));
+		if ($query->num_rows() > 0) return $query;
+		else return false;
+		
+	}
  
 	function actualizarejercicio($id, $data){
         $this->db->where('id',$id);
@@ -59,6 +67,4 @@ class ejercicio_model extends CI_Model{
 	}
 	
 	 
-} 
- 
-?> 
+}

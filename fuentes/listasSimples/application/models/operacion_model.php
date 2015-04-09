@@ -36,7 +36,5 @@ class operacion_model extends CI_Model{
 	function eliminaroperacion($id){
 		$this->db->delete('operacion', array('id' => $id)); 
 	}
-} 
- 
-?> 
+}
 
