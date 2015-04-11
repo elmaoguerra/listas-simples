@@ -17,14 +17,19 @@
 	    <ul class="menu">
 	        <li class="inline-block-top"><a href="<?php echo base_url();?>definicion">Definición</a></li>
 	        <li class="inline-block-top"><a href="<?php echo base_url();?>operaciones">Operaciones</a></li>
-	     	<li class="inline-block-top"><a href="<?php echo base_url();?>ejercicios">Ejercicios</a></li>
-	     	<?php if($this->session->userdata('codigo')): ?>
-	     	<li class="inline-block-top">
-	     		<?php $nombre = $this->session->userdata('nombre');?>
-	     		<a class="perfil" href="<?php echo base_url();?>perfil">
-	     			<?php echo  $nombre;?>
-	     		</a>
-	     	</li>
+	     	<?php 	$nombre = $this->session->userdata('nombre');
+	     			$grupo =  $this->session->userdata('grupo');	     			
+	     		if ($grupo==1):?>
+	     			<li class="inline-block-top"><a href="<?php echo base_url();?>ejercicios">Ejercicios</a></li>
+	     	<?php elseif ($grupo>=2):?>
+	     			<li class="inline-block-top"><a href="<?php echo base_url();?>metas">Metas</a></li>
+	     	<?php endif;
+	     		if($this->session->userdata('codigo')): ?>
+			     	<li class="inline-block-top">
+			     		<a class="perfil" href="<?php echo base_url();?>perfil">
+			     			<?php echo  $nombre;?>
+			     		</a>
+			     	</li>
 	     	<?php endif ?>
 	    </ul>
 	</nav>
@@ -36,5 +41,4 @@
 	<a href="<?php echo base_url();?>ingresar">Iniciar Sesión</a>
 	<?php endif ?>
 	</div>	
-	</header>
-	
+	</header>	

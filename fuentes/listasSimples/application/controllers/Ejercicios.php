@@ -7,6 +7,7 @@ class Ejercicios extends CI_Controller {
 		parent::__construct();
 		$this->load->model('LoginModel', 'acceso');
 		$this->acceso->_validar_sesion();
+		$this->_validar_grupo();
 		$this->load->model('ejercicio_model'); 
 		$this->load->model('sentencia_model'); 
 		$this->load->model('operacion_model');
@@ -192,6 +193,13 @@ class Ejercicios extends CI_Controller {
 			return 'operaciones/eliminar';
 		}else{
 			return 'operaciones';
+		}
+	}
+	// Solo permite el acceso al grupo de solo ejercicios (grupo 1)
+	function _validar_grupo()
+	{
+		if($this->session->userdata('grupo')!= 1){
+			redirect(base_url().'definicion');
 		}
 	}
 }
