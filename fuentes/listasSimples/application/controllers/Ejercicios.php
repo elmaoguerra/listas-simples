@@ -11,6 +11,7 @@ class Ejercicios extends CI_Controller {
 		$this->load->model('ejercicio_model'); 
 		$this->load->model('sentencia_model'); 
 		$this->load->model('operacion_model');
+		date_default_timezone_set('America/Bogota');
 	}
 
 	public function index($id = '', $sentencias ='')
@@ -73,6 +74,12 @@ class Ejercicios extends CI_Controller {
 	{
 		$codigo=$this->security->xss_clean($this->input->post('sentencias[]'));
 		$id=$this->security->xss_clean($this->input->post('ejercicio'));
+		$hora1=$this->security->xss_clean($this->input->post('hora1'));
+		$hora2=date('H:i:s');
+		$seg = $this->session->flashdata('seg');
+		$seg += $this->_tiempos($hora1, $hora2);
+		$this->session->set_flashdata('seg', $seg);
+
 		if($codigo=="" || $id==""){
 			redirect(base_url().'ejercicios');
 		}
@@ -119,14 +126,15 @@ class Ejercicios extends CI_Controller {
 	public function error()
 	{
 		$valida = $this->_validar();
+		$intentos = $this->session->flashdata('intentos');
+		$this->session->keep_flashdata('intentos');
 		if($valida === TRUE){
 			//Guardar_BD
 			//Mensaje BIEN
 			redirect(base_url().'ejercicios/bien');
 		}else{
-			$intentos = $this->session->flashdata('intentos')+1;
+			$intentos += 1;
 			$this->session->set_flashdata('intentos', $intentos);
-			$this->session->keep_flashdata('intentos');
 			if ($intentos<4) {
 				//Volver a cargar el ejercicio
 				$this->index($valida['id'], $valida['codigo']);
@@ -146,18 +154,14 @@ class Ejercicios extends CI_Controller {
 		}
 	}
 
-	function fechas(){
-
-		$val1 = '22:30:05.900';
-		$val2 = '22:30:55.100';
-
+	function _tiempos($val1, $val2)
+	{
 		$dateTime1 = new DateTime($val1);
 		$dateTime2 = new DateTime($val2);
 		$inter = $dateTime1->diff($dateTime2);
-		echo "<pre>";
-		var_dump($inter);
 
-		echo $inter->format("%i minutos");
+		$seg = ($inter->h * 3600) + ($inter->i * 60) + ($inter->s);
+		return $seg;// Devuelve los segundos que empleó el usuario
 	}
 
 	function _ejercicio_aleatorio()
@@ -174,12 +178,22 @@ class Ejercicios extends CI_Controller {
 
 	function bien()
 	{
-		//Deberia cargar solo si se realizo un correcto ejercicio
+		//Carga solo si se realizo un correcto ejercicio
+		if (!$this->session->flashdata('seg')) {
+			redirect(base_url());
+		}
 		$datos['titulo'] = "Bien Hecho";
 		$datos['js'] = 	"";
 		$datos['contenido'] = "bien";
 		$datos['tipo'] = "bien";
+		$datos['eficiencia'] = 	$this->_calcular_eficiencia();
 		$this->load->view('plantillas/plantilla', $datos);
+	}
+
+	function _calcular_eficiencia()
+	{
+		$intentos = $this->session->flashdata('intentos');
+		return round((3*100/$intentos)/3);
 	}
 
 	function _definir_op($nombre)

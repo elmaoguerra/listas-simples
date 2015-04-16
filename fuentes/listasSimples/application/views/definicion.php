@@ -18,8 +18,8 @@
 	<div class="inline-block-top codigo">
 		<pre class="prettyprint lang-c">
 struct Nodo {
-	char dato;
-	struct Nodo *ptrSiguiente;
+    char dato;
+    struct Nodo *ptrSiguiente;
 };</pre>
 	</div>
 	<p>En el ejemplo, cada elemento de la lista sólo contiene un dato 

@@ -5,6 +5,13 @@
 	        <?php if ($tipo==='bien'):?>
 	        	<h3>Muy Bien <?php echo $this->session->userdata('nombre');?></h3>
 		        <p>Has organizado las sentencias correctamente!</p>
+		        <p><strong>Eficacia (tiempo): </strong>
+		        	<?php echo $this->session->flashdata('seg');?> segundos.
+		        </p>
+		        <p><strong>Eficiencia (intentos): </strong>
+		        	<?php echo $this->session->flashdata('intentos');?> intento(s) => 
+		        	<?php echo $eficiencia.' %'; ?>
+		        </p>
 	        <?php elseif ($tipo==='mejorar'): ?>
 	        	<h3>Revisa los Ejemplos</h3>
 		        <p>Has tenido errores organizando las sentencias.</p>

@@ -77,7 +77,11 @@ input[type="text"], input[type="password"] {
 }
 input[type="text"]:hover, input[type="password"]:hover{
 	color:#C0C0C0;
-	
+}
+input[type="text"]:focus, input[type="password"]:focus{
+	background-color: #222;
+	border-radius: 5px;
+	color: #efe;
 }
 .submit h4 a{
 	float:left;

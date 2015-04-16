@@ -9,20 +9,13 @@
 			<span id="intentos-x"></span>
 			<p id="intentos-error">Has tenido un Error<br>
 				Intenta de Nuevo</p>
-		<?php else :
-			// echo "<script type=\"text/javascript\">
-			// 	alert(\"Muy bien ".$this->session->userdata('nombre').":\n\n
-			// 		Has organizado las lineas correctamente!\n\n\t
-			// 		Intenta el siguiente ejercicio\");
-			// </script>";
-		?>
-		
 		<?php endif ?>
 		<p><strong>Intento <?php echo $this->session->flashdata('intentos'); ?> de 3</strong></p>
 	</div>
 	<section id="sec-codigo">
 		<form action="<?php echo base_url();?>ejercicios/error" method="post">
 			<input type="hidden" name="ejercicio" value="<?php echo $id_ejercicio;?>">
+			<input type="hidden" name="hora1" value="<?php echo date('H:i:s'); ?>">
 		<h3>Pseudo-código</h3>
 		<ul id="pseudo-codigo" class="inline-block-top">
 		    <?php		    

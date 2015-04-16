@@ -24,13 +24,18 @@ function inicio () {
 
 function crearCabeza (ancho, x, y) {
 	ctx.clearRect(0,0,ancho-14, ancho+50);
+	ctx.clearRect(0,0,90,35);
 	//ctx.clearRect(x,y,ancho-6, ancho+45);
-
+	ctx.shadowBlur = 0;
 	ctx.fillStyle = "rgb(200,0,0)";
     ctx.fillRect (x+1, y+3, 20, 20);
 
     ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
     ctx.fillRect (x+5, y+5, 20, 20);
+
+    ctx.fillStyle="#222";
+	ctx.font = "17px sans-Serif";
+	ctx.fillText("ptrLista", x+30, y+20);
 
     if(lista.length>0){
     	//crear apuntador a primer elemento
@@ -70,8 +75,14 @@ function dibujarNodo (ancho, dato, i) {
 	var linea=new Linea(puntos);
 	if (i<lista.length -1) {
 		linea.estilo="#efe";
+		ctx.fillStyle="#232";
+		ctx.font = "13px sans-Serif";
+		ctx.fillText("*ptrSig", ancho + dx + 3, (alto*0.8)+y);
 	} else{
 		linea.estilo="#d00";
+		ctx.fillStyle="#a00";
+		ctx.font = "17px sans-Serif";
+		ctx.fillText("NULL", ancho + dx + 3, (alto*0.9)+y);
 	};
     linea.trazarFlecha();
 }
@@ -128,6 +139,11 @@ function recorriendo(dato) {
 
 	    ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
 	    ctx.fillRect (dx, 15, 20, 20);
+
+	    ctx.fillStyle="#222";
+		ctx.font = "17px sans-Serif";
+		ctx.fillText("ptrLista", dx+30, 20);
+
 	    if(lista[rx]==dato){
 	    	var datoA = prompt("' "+dato+" ' Encontrado!\n" +
 	    		"Digite el nuevo dato", dato);
@@ -554,7 +570,7 @@ var Linea = function (cordenadas) {
 				ctx.stroke();
 				ctx.closePath();
 			};
-
+			ctx.shadowBlur = 0;
 		} else{};
 	}
 }
