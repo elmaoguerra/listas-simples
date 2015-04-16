@@ -31,12 +31,15 @@ class AdminusuarioController extends CI_Controller {
 	 
 	public function insertarAcc() 
 	{ 
-		 
+	
+
+	 $code = rand(1000, 99999);
 	 $datos['codigo']= $this->input->post('txtcodigo');
      $datos['nombre']= $this->input->post('txtnombre');
      $datos['email']= $this->input->post('txtemail');
      $datos['password']= md5($this->input->post('txtpassword1'));
      $datos['grupo_id']= $this->input->post('txtgrupo_id');
+     $datos['cod_activacion']=$code;
  
 	$this->usuario_model->crearusuario($datos); 
 	
@@ -152,5 +155,18 @@ class AdminusuarioController extends CI_Controller {
 		$this->load->view('administracion/contenido',$datos); 
 	} 
 	 
+	 public function confirmar($code)
+	 {
+	 	echo 'en controller'.$code;
+	 	$res = $this->usuario_model->very($code);
+	 	if($res == false)
+	 	{
+	 		echo 'El usuario no existe';
+	 	}else{
+	 		$this->usuario_model->actualizarcodigousuario($code);
+	 		$this->load->view('confirmacion');
+	 		echo 'Usuario Confirmado';
+	 	}
+	 }
 } 
 

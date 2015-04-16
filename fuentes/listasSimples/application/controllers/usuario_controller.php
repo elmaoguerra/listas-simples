@@ -127,4 +127,3 @@ class AdminusuarioController extends CI_Controller {
 	} 
 	 
 } 
-

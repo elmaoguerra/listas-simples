@@ -14,7 +14,9 @@ class usuario_model extends CI_Model{
 											'nombre'  => $data['nombre'], 
 											'email'  => $data['email'], 
 											'password'  => $data['password'], 
-											'grupo_id'  => $data['grupo_id']));
+											'grupo_id'  => $data['grupo_id'],
+											'cod_activacion'  => $data['cod_activacion'],
+											'estado'  => 'Inactivo'));
 
 
         
@@ -46,6 +48,28 @@ class usuario_model extends CI_Model{
 	 
 	function eliminarusuario($id){
 		$this->db->delete('usuario', array('codigo' => $id)); 
+	}
+
+	function very($code)
+	{
+		echo 'code en model: '.$code;
+
+		$this->db->where('cod_activacion',$code);
+        $query = $this->db->get('usuario');
+		if($query->num_rows() == 1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	function actualizarcodigousuario($code)
+	{
+		$this->db->where('cod_activacion',$code);
+		$this->db->update('usuario',array('estado'=>'Activo'));
 	}
 	 
 } 
