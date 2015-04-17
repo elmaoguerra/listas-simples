@@ -7,9 +7,9 @@
 </head>
 <body>
 	<div class="message warning" >
-			<form name="form_confirmar" action="<?= base_url().'adminusuariocontroller/changepass'?>" method="POST">
+			<form name="form_activate" action="<?= base_url().'LoginController/change_pass'?>" method="POST">
 			<li>
-				<input type="text" name="user" class="text" placeholder="Código">
+				<input type="text" name="user" class="text" placeholder="Código de Activación">
 				<label class=" icon user"></label>
 			</li>
 				<div class="clear"> </div>
@@ -25,6 +25,7 @@
 				<div class="clear"> </div>	
 			</div>
 		</form>
+
 	</div>	
 </body>
 </html>

@@ -157,7 +157,7 @@ class AdminusuarioController extends CI_Controller {
 	 
 	 public function confirmar($code)
 	 {
-	 	echo 'en controller'.$code;
+	 	//echo 'en controller'.$code;
 	 	$res = $this->usuario_model->very($code);
 	 	if($res == false)
 	 	{

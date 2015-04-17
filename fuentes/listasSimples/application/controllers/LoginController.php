@@ -33,6 +33,27 @@ class LoginController extends CI_Controller{
 		}
 	}
 
+	public function change_pass()
+	{
+		if($this->input->post('submit')){
+			$this->load->model('LoginModel');
+			$cod = $this->security->xss_clean($this->input->post('user'));
+			$pass = md5($this->security->xss_clean($this->input->post('pass')));
+			
+			$variable = $this->LoginModel->change_pass($cod, $pass);
+
+			if($variable === TRUE){
+				$this->session->set_flashdata('mensaje', 'Contraseña cambiada con exito. Puede Ingresar al Sistema');
+				redirect(base_url().'ingresar');
+			}else{
+				 echo 'Mal';
+			}
+
+		}else{
+			redirect(base_url().'ingresar');
+		}
+	}
+
 	public function close_session(){
 		//session_destroy();
 		$this->session->sess_destroy();

@@ -8,26 +8,27 @@ class PrincipalController extends CI_Controller{
 
 	public function index(){
 
-		if($this->session->userdata('grupo_id') == 1)
+		if($this->session->userdata('grupo') == 1)
 			{
 				$rol = 'Usuario Solo Ejercicios';
 			}
-		if($this->session->userdata('grupo_id') == 2)
+		if($this->session->userdata('grupo') == 2)
 			{
 				$rol = 'Usuario Metas Impuestas';
 			}
-		if($this->session->userdata('grupo_id') == 3)
+		if($this->session->userdata('grupo') == 3)
 			{
 				$rol = 'Usuario Elije metas a Cumplir';
 			}
-		if($this->session->userdata('grupo_id') == 4)
+		if($this->session->userdata('grupo') == 4)
 			{
 				$rol = 'Usuario Adminitrador';
 			}
 
 		$data = array('usuariosession' => $this->session->userdata('nombre'),
-						'grupousuariosession' => $this->session->userdata('grupo_id'),
-						'rolsession' => $rol);
+						'grupousuariosession' => $this->session->userdata('grupo'),
+						'rolsession' => $rol,
+						'estadousuario' => $this->session->userdata('estado'));
 		$this->load->view('administracion/principal',$data);
 	}
 
