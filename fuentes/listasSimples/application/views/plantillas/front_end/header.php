@@ -12,33 +12,33 @@
 </head>
 <body>
 	<header>
-	<h1 class="inline-block-top"><a  href="<?php echo base_url();?>" >Listas Simplemente<br/>Enlazadas</a></h1>
-	<nav id="sec-menu" class="inline-block-top">
-	    <ul class="menu">
-	        <li class="inline-block-top"><a href="<?php echo base_url();?>definicion">Definición</a></li>
-	        <li class="inline-block-top"><a href="<?php echo base_url();?>operaciones">Operaciones</a></li>
-	     	<?php 	$nombre = $this->session->userdata('nombre');
-	     			$grupo  = $this->session->userdata('grupo');
-	     			$codigo = $this->session->userdata('codigo');
-	     		if ($grupo==1):?>
-	     			<li class="inline-block-top"><a href="<?php echo base_url();?>ejercicios">Ejercicios</a></li>
-	     	<?php elseif ($grupo>=2):?>
-	     			<li class="inline-block-top"><a href="<?php echo base_url();?>metas">Metas</a></li>
-	     	<?php endif;?>
-	     	<li class="inline-block-top"><a href="<?php echo base_url();?>ayuda">Ayuda</a></li>
-	    </ul>
-	</nav>
-	<div id="perfil">
+		<h1 class="inline-block-top"><a  href="<?php echo base_url();?>" >Listas Simplemente<br/>Enlazadas</a></h1>
+		<nav id="sec-menu" class="inline-block-top">
+			<ul class="menu">
+				<li class="inline-block-top"><a href="<?php echo base_url();?>definicion">Definición</a></li>
+				<li class="inline-block-top"><a href="<?php echo base_url();?>operaciones">Operaciones</a></li>
+				<?php 	$nombre = $this->session->userdata('nombre');
+				$grupo  = $this->session->userdata('grupo');
+				$codigo = $this->session->userdata('codigo');
+				if ($grupo==1):?>
+				<li class="inline-block-top"><a href="<?php echo base_url();?>ejercicios">Ejercicios</a></li>
+			<?php elseif ($grupo>=2):?>
+			<li class="inline-block-top"><a href="<?php echo base_url();?>metas">Metas</a></li>
+		<?php endif;?>
+		<li class="inline-block-top"><a href="<?php echo base_url();?>ayuda">Ayuda</a></li>
+	</ul>
+</nav>
+<div id="perfil">
 	<?php if($codigo): ?>
-     	<p class="inline-block-top">
-     		<!-- Bienvenid@:  -->
-     		<a id="nombre" href="<?php echo base_url();?>perfil">
-     			<?php echo  $nombre;?>
-     		</a>
-			<a href="<?php echo base_url();?>salir">Cerrar Sesión</a>
-			<?php else:?>
-			<a href="<?php echo base_url();?>ingresar">Iniciar Sesión</a>
-			<?php endif ?>
-     	</p>
-	</div>	
-	</header>	
+	<p class="inline-block-top">
+		<!-- Bienvenid@:  -->
+		<a id="nombre" href="<?php echo base_url();?>perfil">
+			<?php echo  $nombre;?>
+		</a>
+		<a href="<?php echo base_url();?>salir">Cerrar Sesión</a>
+	<?php else:?>
+	<a href="<?php echo base_url();?>ingresar">Iniciar Sesión</a>
+<?php endif ?>
+</p>
+</div>	
+</header>	

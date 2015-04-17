@@ -268,9 +268,11 @@ article{
     text-decoration: none;
     color: #BBF9CB;
     padding: 0.5em;
+	border-radius: 0.5em 2em 0.5em 2em;
+	box-shadow: 2px 2px 4px #1F5C4A;
 }
 #nombre:hover{
-	border-radius: 0.5em 2em 0.5em 2em;
+	background-color: #1F4A5C;
 }
 
 #marco label{

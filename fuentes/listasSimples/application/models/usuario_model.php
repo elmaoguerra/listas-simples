@@ -72,7 +72,5 @@ class usuario_model extends CI_Model{
 		$this->db->update('usuario',array('estado'=>'Activo'));
 	}
 	 
-} 
- 
-?> 
+}
 

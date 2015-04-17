@@ -108,19 +108,19 @@ class Ejercicios extends CI_Controller {
 		}
 		// echo "\nCadena Enviada\n";
 		// var_dump($codigoUsuario);//83
-
+		$datos = array(
+			'id' => $id,
+			'codigo' =>$codigo,
+			'nombre_op' =>$nombre_op
+			);
 		if($codigoBD === $codigoUsuario){
 			//echo "son Iguales";
-			return TRUE;
+			$datos['valido'] = TRUE;
 		}else{
 			// echo "son Diferentes";
-			$datos = array(
-				'id' => $id,
-				'codigo' =>$codigo,
-				'nombre_op' =>$nombre_op
-				);
-			return $datos;
+			$datos['valido'] = FALSE;
 		}
+			return $datos;
 	}
 
 	public function error()
@@ -128,8 +128,16 @@ class Ejercicios extends CI_Controller {
 		$valida = $this->_validar();
 		$intentos = $this->session->flashdata('intentos');
 		$this->session->keep_flashdata('intentos');
-		if($valida === TRUE){
+		if($valida['valido']){
 			//Guardar_BD
+			$this->load->model('resultado_model');
+			$resultado = array('ejercicio_id' => $valida['id'],
+				'usuario' => $this->session->userdata('codigo'),
+				'tiempo' => $this->session->flashdata('seg'),
+				'eficiencia' => $this->_calcular_eficiencia(),
+				'fecha' => date("Y-m-d H:i:s"));
+			$this->resultado_model->crearresultado($resultado);
+			
 			//Mensaje BIEN
 			redirect(base_url().'ejercicios/bien');
 		}else{
