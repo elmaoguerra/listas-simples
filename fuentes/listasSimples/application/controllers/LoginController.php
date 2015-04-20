@@ -3,13 +3,29 @@ class LoginController extends CI_Controller{
 
 	public function __construct(){
 		parent::__construct();
+		//carga helper perfiles
+		$this->load->helper('perfiles');
 	}
 
 	public function index(){
+		
+		log_message('error', 'JJOC aca estoy LoginController');
+		
 		if(!$this->session->userdata('login')){
+			log_message('error', 'JJOC aca estoy LoginController if 0');
 			$this->load->view('login');
 		}else{
-			redirect(base_url().'definicion');
+
+			if($this->session->userdata('grupo') && $this->session->userdata('grupo') == PERFIL_ADMINISTRADOR){ //panel administrativo
+				log_message('error', 'JJOC aca estoy LoginController if 1');
+				redirect(base_url().'administracion');
+			
+			}else if($this->session->userdata('grupo')  && $this->session->userdata('grupo') == PERFIL_SOLO_EJERCICIOS){ // panel estudiante
+								log_message('error', 'JJOC aca estoy LoginController if 2');
+				redirect(base_url().'definicion');
+				
+			}
+			
 		}
 	}
 

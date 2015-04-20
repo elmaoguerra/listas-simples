@@ -6,6 +6,8 @@ class AdmingrupoController extends CI_Controller {
 		parent::__construct(); 
 		$this->load->helper('url');	 
 		$this->load->model('grupo_model'); 
+		//carga helper perfiles
+		$this->load->helper('perfiles');
 	} 
 	 
 	public function index() 
@@ -123,4 +125,4 @@ class AdmingrupoController extends CI_Controller {
 	} 
 	 
 } 
-
+

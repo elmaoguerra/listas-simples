@@ -5,7 +5,10 @@ class AdminmetaController extends CI_Controller {
 	function __construct(){ 
 		parent::__construct(); 
 		$this->load->helper('url');	 
-		$this->load->model('meta_model'); 
+		$this->load->model('meta_model');
+		
+		//carga helper perfiles
+		$this->load->helper('perfiles'); 
 	} 
 	 
 	public function index() 
@@ -121,4 +124,4 @@ class AdminmetaController extends CI_Controller {
 	} 
 	 
 } 
-
+

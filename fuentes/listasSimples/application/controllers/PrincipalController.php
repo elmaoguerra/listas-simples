@@ -3,6 +3,8 @@ class PrincipalController extends CI_Controller{
 
 	public function __construct(){
 		parent::__construct();
+		//carga helper perfiles
+		$this->load->helper('perfiles');
 		$this->very_session();
 	}
 

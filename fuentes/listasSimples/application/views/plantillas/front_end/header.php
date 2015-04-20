@@ -1,3 +1,9 @@
+<?php
+$nombre = $this->session->userdata('nombre');
+$grupo  = $this->session->userdata('grupo');
+$codigo = $this->session->userdata('codigo');
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,19 +20,9 @@
 	<header>
 		<h1 class="inline-block-top"><a  href="<?php echo base_url();?>" >Listas Simplemente<br/>Enlazadas</a></h1>
 		<nav id="sec-menu" class="inline-block-top">
-			<ul class="menu">
-				<li class="inline-block-top"><a href="<?php echo base_url();?>definicion">Definición</a></li>
-				<li class="inline-block-top"><a href="<?php echo base_url();?>operaciones">Operaciones</a></li>
-				<?php 	$nombre = $this->session->userdata('nombre');
-				$grupo  = $this->session->userdata('grupo');
-				$codigo = $this->session->userdata('codigo');
-				if ($grupo==1):?>
-				<li class="inline-block-top"><a href="<?php echo base_url();?>ejercicios">Ejercicios</a></li>
-			<?php elseif ($grupo>=2):?>
-			<li class="inline-block-top"><a href="<?php echo base_url();?>metas">Metas</a></li>
-		<?php endif;?>
-		<li class="inline-block-top"><a href="<?php echo base_url();?>ayuda">Ayuda</a></li>
-	</ul>
+			
+        <!-- definicion de menu por medio de helper -->
+        <?php echo getMenuByPerfil($grupo); ?>     
 </nav>
 <div id="perfil">
 	<?php if($codigo): ?>

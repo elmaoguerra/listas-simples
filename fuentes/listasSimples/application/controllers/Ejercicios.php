@@ -5,6 +5,10 @@ class Ejercicios extends CI_Controller {
 
 	function __construct(){ 
 		parent::__construct();
+		
+		//carga helper perfiles
+		$this->load->helper('perfiles');
+		
 		$this->load->model('LoginModel', 'acceso');
 		$this->acceso->_validar_sesion();
 		$this->_validar_grupo();
@@ -64,8 +68,8 @@ class Ejercicios extends CI_Controller {
 						"<script type=\"text/javascript\" src=\"".base_url()."js/animacion/jquery-ui.min.js\"></script>".
 						"<script>\$(function() {\$( \"#pseudo-codigo\" ).sortable({placeholder: \"ui-state-highlight\"});
 							\$( \"#pseudo-codigo\" ).disableSelection();});</script>";
-		$datos['contenido'] = "ejercicios";
-		
+		//$datos['contenido'] = "ejercicios";
+		$datos['contenido']= $this->load->view('ejercicios',"",true);	
 
 		$this->load->view('plantillas/plantilla', $datos);
 	}
@@ -154,7 +158,8 @@ class Ejercicios extends CI_Controller {
 
 				$datos['titulo'] = "Debes Mejorar";
 				$datos['js'] = 	"";
-				$datos['contenido'] = "bien";
+//				$datos['contenido'] = "bien";
+				$datos['contenido']= $this->load->view('bien',"",true);
 				$datos['tipo'] = "mejorar";
 				$datos['enlace'] = $op;
 				$this->load->view('plantillas/plantilla', $datos);
@@ -192,7 +197,8 @@ class Ejercicios extends CI_Controller {
 		}
 		$datos['titulo'] = "Bien Hecho";
 		$datos['js'] = 	"";
-		$datos['contenido'] = "bien";
+		//				$datos['contenido'] = "bien";
+				$datos['contenido']= $this->load->view('bien',"",true);
 		$datos['tipo'] = "bien";
 		$datos['eficiencia'] = 	$this->_calcular_eficiencia();
 		$this->load->view('plantillas/plantilla', $datos);

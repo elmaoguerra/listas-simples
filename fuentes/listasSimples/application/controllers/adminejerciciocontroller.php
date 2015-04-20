@@ -4,6 +4,10 @@ class AdminEjercicioController extends CI_Controller {
  
 	function __construct(){ 
 		parent::__construct(); 
+		
+		//carga helper perfiles
+		$this->load->helper('perfiles');
+		
 		$this->load->helper('url');	 
 		$this->load->model('ejercicio_model'); 
 		$this->load->model('sentencia_model'); 
@@ -13,15 +17,21 @@ class AdminEjercicioController extends CI_Controller {
 	 
 	public function index() 
 	{ 
-		$datos['tituloCon'] = 'Ejercicios'; 
+		
+		 
+		 
+		 
 		 
 		//consultar ejercicio 
 		$data = $this->ejercicio_model->consultarejercicio(); 
 		$datosC['data']= $data; 
 		$datosC['operaciones'] = $this->operacion_model->consultaroperacion(); 
-		 
-		$datos['contenidoInt'] = $this->load->view('administracion/listarejercicio',$datosC,true);		 
-		$this->load->view('administracion/contenido',$datos); 
+		
+		$datos['titulo'] = "Ejercicios";
+		$datos['js'] = "";
+		$datos['contenido'] = $this->load->view('administracion/listarejercicio',$datosC,true);	
+		$this->load->view('plantillas/plantilla', $datos);	
+		
 	} 
 	 
 	public function insertar() 

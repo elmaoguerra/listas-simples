@@ -1,6 +1,7 @@
 <?php
 
-class LoginModel extends CI_Model{
+class LoginModel extends CI_Model{	 
+
 
 	function __construct(){
         parent::__construct();
@@ -24,6 +25,7 @@ class LoginModel extends CI_Model{
 				$this->session->set_flashdata('mensaje', 'El usuario se encuentra temporalmente inactivo.');
 			}
 			else{
+				$this->session->set_userdata('login', true);
 				return TRUE;
 			}
 

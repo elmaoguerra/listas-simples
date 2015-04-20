@@ -8,6 +8,9 @@ class Perfil extends CI_Controller {
 		$this->acceso->_validar_sesion();
 		$this->load->model('usuario_model');
 		$this->load->model('resultado_model');
+		
+		//carga helper perfiles
+		$this->load->helper('perfiles');
 	}
 
 	function index()
@@ -41,7 +44,9 @@ class Perfil extends CI_Controller {
 
 		$datos['titulo'] = $this->session->userdata('nombre');
 		$datos['js'] = 	"";
-		$datos['contenido'] = "perfil";
+
+		//		$datos['contenido'] = "perfil";
+		$datos['contenido']= $this->load->view('perfil',"",true);
 		$this->load->view('plantillas/plantilla', $datos);
 	}
 

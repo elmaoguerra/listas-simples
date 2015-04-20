@@ -84,3 +84,12 @@ define('EXIT_USER_INPUT', 7); // invalid user input
 define('EXIT_DATABASE', 8); // database error
 define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+//constantes personalizadas
+
+
+//perfiles
+define('PERFIL_SOLO_EJERCICIOS', 1);
+define('PERFIL_METAS_IMPUESTAS', 2);
+define('PERFIL_ELIGE_METAS', 3);
+define('PERFIL_ADMINISTRADOR', 4);

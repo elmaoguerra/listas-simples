@@ -29,39 +29,32 @@
 
 <table width="100%" border="0">
   <tr>
-    <td width="25%">&nbsp;</td>
-    <td width="75%">&nbsp;</td>
-  </tr>
-  <tr>
-    <td align="center" valign="top"><?php if(isset ($menuCon)){
-		echo  $menuCon;
-	}?></td>
-    <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <td width="75%"><table width="100%" border="0" cellpadding="0" cellspacing="0">
       <tr>
         <td><div align="center">
-          <?php if(isset ($tituloCon)){
-		echo  $tituloCon;
+          <?php if(isset ($titulo)){
+		echo  $titulo;
 	}?>
           </div></td>
-      </tr>
+        </tr>
       <?php if(isset ($notificacion)){ ?>
       <tr>
         <td>&nbsp;</td>
-      </tr>
+        </tr>
       <tr>
         <td><div align="center"><?php echo $notificacion; ?></div></td>
-      </tr>
+        </tr>
       <tr>
         <td>&nbsp;</td>
-      </tr>
+        </tr>
       <?php }?>
       <tr>
         <td><div align="center">
           <?php if(isset ($contenidoInt)){
 		echo  $contenidoInt;
 	}?>
-        </div></td>
-      </tr>
+          </div></td>
+        </tr>
     </table></td>
   </tr>
 </table>

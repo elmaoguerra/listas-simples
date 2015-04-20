@@ -11,6 +11,9 @@ class Operaciones extends CI_Controller {
 		$this->load->model('ejercicio_model'); 
 		$this->load->model('sentencia_model'); 
 		$this->load->model('operacion_model'); 
+		
+		//carga helper perfiles
+		$this->load->helper('perfiles');
 	} 
 
 	public function index()
@@ -47,8 +50,8 @@ class Operaciones extends CI_Controller {
 		$datos['sentencias'] = $aux;
 		
 		$datos['js'] = 	"";
-		$datos['contenido'] = "operaciones";
-
+//		$datos['contenido'] = "operaciones";
+		$datos['contenido']= $this->load->view('operaciones',"",true);
 		$this->load->view('plantillas/plantilla', $datos);
 		
 	}
@@ -86,8 +89,9 @@ class Operaciones extends CI_Controller {
 		$datos['lineas'] = $codigoAct;
 		$datos['sentencias'] = $aux;
 		$datos['js'] = 	"";
-		$datos['contenido'] = "operaciones/recorrer";
 
+//		$datos['contenido'] = "operaciones/recorrer";
+		$datos['contenido']= $this->load->view('operaciones/recorrer',"",true);
 		$this->load->view('plantillas/plantilla', $datos);
 	}
 
@@ -124,8 +128,9 @@ class Operaciones extends CI_Controller {
 		$datos['lineas'] = $codigoAct;
 		$datos['sentencias'] = $aux;
 		$datos['js'] = 	"";
-		$datos['contenido'] = "operaciones/insertar";
 
+//		$datos['contenido'] = "operaciones/insertar";
+		$datos['contenido']= $this->load->view('operaciones/insertar',"",true);
 		$this->load->view('plantillas/plantilla', $datos);
 	}
 
@@ -162,8 +167,9 @@ class Operaciones extends CI_Controller {
 		$datos['lineas'] = $codigoAct;
 		$datos['sentencias'] = $aux;
 		$datos['js'] = 	"";
-		$datos['contenido'] = "operaciones/eliminar";
 
+//		$datos['contenido'] = "operaciones/eliminar";
+		$datos['contenido']= $this->load->view('operaciones/eliminar',"",true);
 		$this->load->view('plantillas/plantilla', $datos);
 	}
 }

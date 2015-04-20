@@ -6,8 +6,10 @@ class AdminejercicioController extends CI_Controller {
 		parent::__construct(); 
 		$this->load->helper('url');	 
 		$this->load->model('ejercicio_model'); 
+		//carga helper perfiles
+		$this->load->helper('perfiles');
 	} 
-	 
+
 	public function index() 
 	{ 
 		$datos['tituloCon'] = 'ejercicio'; 
@@ -125,4 +127,4 @@ $datos['id']= $this->input->post('txtid');
 	} 
 	 
 } 
-
+
