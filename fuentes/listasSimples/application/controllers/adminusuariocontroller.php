@@ -9,28 +9,27 @@ class AdminusuarioController extends CI_Controller {
 		//carga helper perfiles
 		$this->load->helper('perfiles');
 
-		
 	} 
 	 
 	public function index() 
 	{ 
-		$datos['tituloCon'] = 'Usuarios'; 
+	
+		$datos['titulo'] = 'Usuarios';  
 		 
 		//consultar usuario 
 		$data = $this->usuario_model->consultarusuario(); 
 		$datosC['data']= $data; 
-		 
-		$datos['contenidoInt'] = $this->load->view('administracion/listarusuario',$datosC,true);		 
-		$this->load->view('administracion/contenido',$datos); 
+		$datos['js'] = "";
+		$datos['contenido'] = $this->load->view('administracion/listarusuario',$datosC,true);		 
+		$this->load->view('plantillas/plantilla', $datos); 
 	} 
 	 
 	public function insertar() 
 	{ 
-		$datos['tituloCon'] = 'Registrar usuario'; 
-		 
-		$datos['contenidoInt'] = $this->load->view('administracion/insertmodusuario','',true);		 
-		$this->load->view('administracion/contenido',$datos); 
-		 
+		$datos['titulo'] = 'Registrar usuario'; 
+		$datos['js'] = "";
+		$datos['contenido'] = $this->load->view('administracion/insertmodusuario','',true);		 
+		$this->load->view('plantillas/plantilla', $datos); 
 	} 
 	 
 	public function insertarAcc() 
@@ -62,20 +61,21 @@ class AdminusuarioController extends CI_Controller {
 
 
 
-	$datos['tituloCon'] = 'Usuarios'; 
+	$datos['titulo'] = 'Usuarios'; 
+	$datos['js'] = "";
 	
 	//consultar usuario 
 	$data = $this->usuario_model->consultarusuario(); 
 	$datosContenido['data']= $data; 
 	
-	$datos['contenidoInt'] = $this->load->view('administracion/listarusuario',$datosContenido,true);			 
-	$this->load->view('administracion/contenido',$datos); 
+	$datos['contenido'] = $this->load->view('administracion/listarusuario',$datosContenido,true);			 
+	$this->load->view('plantillas/plantilla', $datos); 
 		 
 	} 
 	 
 	public function actualizar() 
 	{ 
-		$datos['tituloCon'] = 'Actualizar usuario'; 
+		$datos['titulo'] = 'Actualizar usuario'; 
 		 
 		$id = $this->uri->segment(3); 
 		$objectAct = $this->usuario_model->consultarusuarioById($id); 
@@ -92,9 +92,10 @@ class AdminusuarioController extends CI_Controller {
 												 				
 			}
 		}
-		 
-		$datos['contenidoInt'] = $this->load->view('administracion/insertmodusuario',$datosObj,true);		 
-		$this->load->view('administracion/contenido',$datos); 
+		
+		$datos['js'] = "";
+		$datos['contenido'] = $this->load->view('administracion/insertmodusuario',$datosObj,true);		 
+		$this->load->view('plantillas/plantilla', $datos); 
 	} 
 	 
 	public function actualizarAcc() 
@@ -126,14 +127,14 @@ class AdminusuarioController extends CI_Controller {
 			 
 		$datos['notificacion'] = 'Se Actualizo el usuario exitosamente'; 
 		 
-		$datos['tituloCon'] = 'Usuarios'; 
+		$datos['titulo'] = 'Usuarios'; 
 		 
 		//consultar usuario 
 		$data = $this->usuario_model->consultarusuario(); 
 		$datosContenido['data']= $data; 
 		 
-		$datos['contenidoInt'] = $this->load->view('administracion/listarusuario',$datosContenido,true);			 
-		$this->load->view('administracion/contenido',$datos); 
+		$datos['contenido'] = $this->load->view('administracion/listarusuario',$datosContenido,true);			 
+		$this->load->view('plantillas/plantilla', $datos); 
 	} 
 	 
 	public function eliminar() 
@@ -141,22 +142,22 @@ class AdminusuarioController extends CI_Controller {
 		$id = $this->uri->segment(3); 
 		$this->usuario_model->eliminarusuario($id); 
 		 
-		$datos['tituloCon'] = 'Usuarios'; 
+		$datos['titulo'] = 'Usuarios'; 
 		 
 		//consultar usuario 
 		$data = $this->usuario_model->consultarusuario(); 
 		$datosC['data']= $data; 
 		 
-		$datos['contenidoInt'] = $this->load->view('administracion/listarusuario',$datosC,true);		 
-		$this->load->view('administracion/contenido',$datos); 
+		$datos['contenido'] = $this->load->view('administracion/listarusuario',$datosC,true);		 
+		$this->load->view('plantillas/plantilla', $datos); 
 		 
 	} 
 	 
 	public function listar() 
 	{ 
-		$datos['tituloCon'] = 'Usuarios'; 
+		$datos['titulo'] = 'Usuarios'; 
 		$datos['contenidoInt'] = $this->load->view('administracion/listarusuario','',true);		 
-		$this->load->view('administracion/contenido',$datos); 
+		$this->load->view('plantillas/plantilla', $datos); 
 	} 
 	 
 	 public function confirmar($code)

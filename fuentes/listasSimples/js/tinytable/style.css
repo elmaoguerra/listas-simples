@@ -1,6 +1,8 @@
 
-
-#tablewrapper {width:980px; margin:0 auto}
+a{
+	text-decoration:none;
+}
+#tablewrapper {width:980px; margin:10px auto; height:400px;}
 #tableheader {height:55px}
 .search {float:left; padding:6px; border:1px solid #c6d5e1; background:#fff}
 #tableheader select {float:left; font-size:12px; width:125px; padding:2px 4px 4px}

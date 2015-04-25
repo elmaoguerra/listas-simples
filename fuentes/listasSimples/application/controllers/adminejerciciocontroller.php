@@ -18,17 +18,12 @@ class AdminEjercicioController extends CI_Controller {
 	public function index() 
 	{ 
 		
-		 
-		 
-		 
-		 
 		//consultar ejercicio 
 		$data = $this->ejercicio_model->consultarejercicio(); 
 		$datosC['data']= $data; 
 		$datosC['operaciones'] = $this->operacion_model->consultaroperacion(); 
 		
 		$datos['titulo'] = "Ejercicios";
-		$datos['js'] = "";
 		$datos['contenido'] = $this->load->view('administracion/listarejercicio',$datosC,true);	
 		$this->load->view('plantillas/plantilla', $datos);	
 		
@@ -36,16 +31,16 @@ class AdminEjercicioController extends CI_Controller {
 	 
 	public function insertar() 
 	{ 
-		$datos['tituloCon'] = 'Registrar ejercicio'; 
+		$datos['titulo'] = 'Registrar ejercicio'; 
 		
 		//secargan las operaciones
 		$datosInsert['operacionesAsoc'] = $this->operacion_model->consultaroperacion(); 
 		//la operacion seleccionada es 0 ya que se va a insertar
 		$datosInsert['operacionSel'] = 0;
 		
-		$datos['contenidoInt'] = $this->load->view('administracion/insertmodejercicio',$datosInsert,true);	
+		$datos['contenido'] = $this->load->view('administracion/insertmodejercicio',$datosInsert,true);	
 		 
-		$this->load->view('administracion/contenido',$datos); 
+		$this->load->view('plantillas/plantilla', $datos);
 		 
 	} 
 	 
@@ -87,21 +82,21 @@ class AdminEjercicioController extends CI_Controller {
   
 	$datos['notificacion'] = 'Se creo el ejercicio exitosamente'; 
 	 
-	$datos['tituloCon'] = 'Ejercicios'; 
+	$datos['titulo'] = 'Ejercicios'; 
 	 
 	//consultar ejercicio 
 	$data = $this->ejercicio_model->consultarejercicio(); 
 	$datosContenido['data']= $data; 
 	$datosContenido['operaciones'] = $this->operacion_model->consultaroperacion(); 
 	 
-	$datos['contenidoInt'] = $this->load->view('administracion/listarejercicio',$datosContenido,true);			 
-	$this->load->view('administracion/contenido',$datos); 
+	$datos['contenido'] = $this->load->view('administracion/listarejercicio',$datosContenido,true);			 
+	$this->load->view('plantillas/plantilla', $datos);
 		 
 	} 
 	 
 	public function actualizar() 
 	{ 
-		$datos['tituloCon'] = 'Actualizar ejercicio'; 
+		$datos['titulo'] = 'Actualizar ejercicio'; 
 		 
 		$id = $this->uri->segment(3); 
 
@@ -140,8 +135,8 @@ class AdminEjercicioController extends CI_Controller {
 		
 		
 		 
-		$datos['contenidoInt'] = $this->load->view('administracion/insertmodejercicio',$datosObj,true);		 
-		$this->load->view('administracion/contenido',$datos); 
+		$datos['contenido'] = $this->load->view('administracion/insertmodejercicio',$datosObj,true);		 
+		$this->load->view('plantillas/plantilla', $datos);
 	} 
 	 
 	public function actualizarAcc() 
@@ -183,15 +178,15 @@ class AdminEjercicioController extends CI_Controller {
 		
 		$datos['notificacion'] = 'Se Actualizo el ejercicio exitosamente'; 
 		 
-		$datos['tituloCon'] = 'Ejercicios'; 
+		$datos['titulo'] = 'Ejercicios'; 
 		 
 		//consultar ejercicio 
 		$data = $this->ejercicio_model->consultarejercicio(); 
 		$datosContenido['data']= $data; 
 		$datosContenido['operaciones'] = $this->operacion_model->consultaroperacion(); 
 		 
-		$datos['contenidoInt'] = $this->load->view('administracion/listarejercicio',$datosContenido,true);			 
-		$this->load->view('administracion/contenido',$datos); 
+		$datos['contenido'] = $this->load->view('administracion/listarejercicio',$datosContenido,true);			 
+		$this->load->view('plantillas/plantilla', $datos);
 	} 
 	 
 	public function eliminar() 
@@ -205,15 +200,15 @@ class AdminEjercicioController extends CI_Controller {
 		
 		$datos['notificacion'] ='   Se Elimino el ejercicio exitosamente'; 
 		 
-		$datos['tituloCon'] = 'Ejercicios'; 
+		$datos['titulo'] = 'Ejercicios'; 
 		 
 		//consultar ejercicio 
 		$data = $this->ejercicio_model->consultarejercicio(); 
 		$datosC['data']= $data; 
 		$datosC['operaciones'] = $this->operacion_model->consultaroperacion(); 
 		 
-		$datos['contenidoInt'] = $this->load->view('administracion/listarejercicio',$datosC,true);		 
-		$this->load->view('administracion/contenido',$datos); 
+		$datos['contenido'] = $this->load->view('administracion/listarejercicio',$datosC,true);		 
+		$this->load->view('plantillas/plantilla', $datos);
 		 
 	} 
 } 

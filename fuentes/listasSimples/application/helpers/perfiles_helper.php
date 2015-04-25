@@ -16,7 +16,12 @@
 			
 		}else if($perfil == PERFIL_ADMINISTRADOR){
 			
-			return "";
+			return  "<ul class=\"menu\">
+					<li class=\"inline-block-top\"><a href=\"".base_url()."usuariosAdministracion\">Usuarios</a></li>
+							<li class=\"inline-block-top\"><a href=\"".base_url()."ejerciciosAdministracion\">Ejercicios</a></li>
+							<li class=\"inline-block-top\"><a href=\"".base_url()."estadisticas\">Estadisticas</a></li>
+					<li class=\"inline-block-top\"><a href=\"".base_url()."ayuda\">Ayuda</a></li>
+					</ul>";
 			
 		}else{
 			return "";

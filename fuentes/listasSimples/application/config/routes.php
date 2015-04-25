@@ -56,7 +56,16 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['ingresar'] = 'loginController';
 $route['LoginController'] = 'ingresar';
+
 $route['administracion'] = 'administracion';
+//administracion de usuarios
+$route['usuariosAdministracion'] = 'adminusuariocontroller';
+$route['usuariosAdministracion/insertar'] = 'adminusuariocontroller/insertar';
+
+//administracion de ejercicios
+$route['ejerciciosAdministracion'] = 'adminejerciciocontroller';
+$route['ejerciciosAdministracion/insertar'] = 'adminejerciciocontroller/insertar';
+
 $route['salir'] = 'loginController/close_session';
 $route['ejercicios/index/(:any)'] = 'ejercicios';
 //$route['ejercicios/enviar'] = 'bien';

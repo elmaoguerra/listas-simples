@@ -14,7 +14,10 @@ $codigo = $this->session->userdata('codigo');
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/estilo-menu.css">
 	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?autoload=true&skin=desert"></script>
 	<script src="<?php echo base_url();?>js/prefixfree.min.js" type="text/javascript"></script>
-	<?=$js;?>
+	<?php 
+	if(isset($js))
+		echo $js;
+	?>
 </head>
 <body>
 	<header>
