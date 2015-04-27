@@ -29,5 +29,25 @@
 			<p><strong>Ejercicios realizados en 3 intentos: </strong><?php echo $intento_3; ?></p>
 			<p><strong>Ejercicios No cumplidos en los 3 intentos: </strong><?php echo $intento_4; ?></p>
 		</article>
+		<table>
+			<caption>table title and/or explanatory text</caption>
+			<thead>
+				<tr>
+					<th>Operación</th>
+					<th>Tiempo Promedio</th>
+					<th>Eficiencia Promedio</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($operaciones as $op) : ?>
+					
+				<tr>
+					<td><?php echo $op->op; ?></td>
+					<td><?php echo convertir_tiempo($op->time); ?></td>
+					<td><?php echo $op->efi; ?>%</td>
+				</tr>
+				<?php endforeach ?>
+			</tbody>
+		</table>
 	</section>
 </main>

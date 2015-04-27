@@ -5,7 +5,11 @@ var rx;
 getLista();
 function getLista () {
 	var label=document.getElementById('lista').innerHTML;
-	lista=label.split(",");
+	if(label==""){
+		lista=[];
+	}else{
+		lista=label.split(",");
+	}
 }
 function inicio () {
 	ctx = document.getElementById("canvas").getContext('2d');
@@ -49,6 +53,19 @@ function crearCabeza (ancho, x, y) {
 	    linea.trazarFlecha();
     }else{
     	//crear apuntador a NULL
+    	var puntos=[
+    		new Punto(x+15,y+15), 
+    		new Punto(x+15, 50 + y+(60*0.5)),
+    		new Punto(x+60-15, 50 + y+(60*0.5))
+    	];
+    	var linea=new Linea(puntos);
+    	linea.estilo="#d00";
+    	linea.radio=10;
+	    linea.trazarFlecha();
+
+		ctx.fillStyle="#a00";
+		ctx.font = "17px sans-Serif";
+		ctx.fillText("NULL", 60, 85);
     }
     
 }

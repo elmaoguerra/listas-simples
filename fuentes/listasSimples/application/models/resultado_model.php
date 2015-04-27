@@ -19,7 +19,7 @@ class resultado_model extends CI_Model{
 	function consultarresultado(){
 		$query = $this->db->get('resultado');
 		if($query->num_rows() >0 ) return $query; 
-		else return false; 
+		else return FALSE; 
 	} 
 
 	function consultarresultadoPorUsuario($usuario){
@@ -27,7 +27,7 @@ class resultado_model extends CI_Model{
 		$query = $this->db->get('resultado'); 
 
 		if($query->num_rows() >0 ) return $query; 
-		else return false; 
+		else return FALSE; 
 	} 
 
 // 	SELECT o.name, avg(r.tiempo), avg(r.eficiencia)
@@ -39,6 +39,28 @@ class resultado_model extends CI_Model{
 // where r.usuario=2
 // group by o.name
 
+	function consultar_promedio_operaciones($usuario)
+	{
+		$sql = "select (o.name) as op, (avg(r.tiempo)) as time, (avg(r.eficiencia)) as efi ".
+			"FROM `resultado` r ".
+			"inner join `ejercicio` e on ".
+			"r.ejercicio_id = e.id ".
+			"inner join `operacion` o on ".
+			"e.operacion_id = o.id ".
+			"where r.usuario = ? ".
+			"group by o.name";
+		$query = $this->db->query($sql, array($usuario));
+		
+
+		/*$this->db->select('*');
+		$this->db->from('resultado');
+		//$this->db->join('ejercicio', 'resultado.ejercicio_id = ejercicio.id');
+
+		$query = $this->db->get();*/
+		if($query->num_rows() > 0 )return $query;
+		else return FALSE;
+	}
+
 
 	function consultar_aprendizaje($usuario)
 	{
@@ -46,7 +68,7 @@ class resultado_model extends CI_Model{
 		FROM `resultado` WHERE usuario = ?";
 		$query = $this->db->query($sql, array($usuario));
 		if ($query->num_rows() > 0) return $query;
-		else return false;
+		else return FALSE;
 	}
 
 	function actualizarresultado($id, $data){

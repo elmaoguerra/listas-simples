@@ -69,7 +69,7 @@ class Ejercicios extends CI_Controller {
 						"<script>\$(function() {\$( \"#pseudo-codigo\" ).sortable({placeholder: \"ui-state-highlight\"});
 							\$( \"#pseudo-codigo\" ).disableSelection();});</script>";
 		//$datos['contenido'] = "ejercicios";
-		$datos['contenido']= $this->load->view('ejercicios',"",true);	
+		$datos['contenido']= $this->load->view('ejercicios',$datos,true);	
 
 		$this->load->view('plantillas/plantilla', $datos);
 	}
@@ -159,9 +159,9 @@ class Ejercicios extends CI_Controller {
 				$datos['titulo'] = "Debes Mejorar";
 				$datos['js'] = 	"";
 //				$datos['contenido'] = "bien";
-				$datos['contenido']= $this->load->view('bien',"",true);
 				$datos['tipo'] = "mejorar";
 				$datos['enlace'] = $op;
+				$datos['contenido']= $this->load->view('bien',$datos,true);
 				$this->load->view('plantillas/plantilla', $datos);
 			}
 		}
@@ -198,8 +198,8 @@ class Ejercicios extends CI_Controller {
 		$datos['titulo'] = "Bien Hecho";
 		$datos['js'] = 	"";
 		//				$datos['contenido'] = "bien";
-				$datos['contenido']= $this->load->view('bien',"",true);
 		$datos['tipo'] = "bien";
+		$datos['contenido']= $this->load->view('bien',$datos,true);
 		$datos['eficiencia'] = 	$this->_calcular_eficiencia();
 		$this->load->view('plantillas/plantilla', $datos);
 	}

@@ -91,7 +91,7 @@ class Operaciones extends CI_Controller {
 		$datos['js'] = 	"";
 
 //		$datos['contenido'] = "operaciones/recorrer";
-		$datos['contenido']= $this->load->view('operaciones/recorrer',"",true);
+		$datos['contenido']= $this->load->view('operaciones/recorrer',$datos,true);
 		$this->load->view('plantillas/plantilla', $datos);
 	}
 
@@ -130,7 +130,7 @@ class Operaciones extends CI_Controller {
 		$datos['js'] = 	"";
 
 //		$datos['contenido'] = "operaciones/insertar";
-		$datos['contenido']= $this->load->view('operaciones/insertar',"",true);
+		$datos['contenido']= $this->load->view('operaciones/insertar',$datos,true);
 		$this->load->view('plantillas/plantilla', $datos);
 	}
 
@@ -169,7 +169,7 @@ class Operaciones extends CI_Controller {
 		$datos['js'] = 	"";
 
 //		$datos['contenido'] = "operaciones/eliminar";
-		$datos['contenido']= $this->load->view('operaciones/eliminar',"",true);
+		$datos['contenido']= $this->load->view('operaciones/eliminar',$datos,true);
 		$this->load->view('plantillas/plantilla', $datos);
 	}
 }
