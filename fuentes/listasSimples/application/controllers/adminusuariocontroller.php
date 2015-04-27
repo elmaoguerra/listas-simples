@@ -34,8 +34,6 @@ class AdminusuarioController extends CI_Controller {
 	 
 	public function insertarAcc() 
 	{ 
-	
-
 	 $code = rand(1000, 99999);
 	 $datos['codigo']= $this->input->post('txtcodigo');
      $datos['nombre']= $this->input->post('txtnombre');
@@ -58,8 +56,6 @@ class AdminusuarioController extends CI_Controller {
 		}else{
 			echo 'no se envio el mensaje';
 		}
-
-
 
 	$datos['titulo'] = 'Usuarios'; 
 	$datos['js'] = "";

@@ -8,6 +8,7 @@ class Ejercicios extends CI_Controller {
 		
 		//carga helper perfiles
 		$this->load->helper('perfiles');
+		$this->load->helper('ejercicios');
 		
 		$this->load->model('LoginModel', 'acceso');
 		$this->acceso->_validar_sesion();
@@ -25,10 +26,12 @@ class Ejercicios extends CI_Controller {
 			if($objectAct !== FALSE){ 
 				$ejercicio = $objectAct->row();
 			}else{
-				$ejercicio = $this->_ejercicio_aleatorio();
+				$object = $this->ejercicio_model->consultarejercicio();
+				$ejercicio = ejercicio_aleatorio($object);
 			}
 		}else{
-			$ejercicio = $this->_ejercicio_aleatorio();
+			$object = $this->ejercicio_model->consultarejercicio();
+			$ejercicio = ejercicio_aleatorio($object);
 		}
 		if($ejercicio !== FALSE) { 
 			 $datos['id_ejercicio'] = $ejercicio->id; 
@@ -81,7 +84,7 @@ class Ejercicios extends CI_Controller {
 		$hora1=$this->security->xss_clean($this->input->post('hora1'));
 		$hora2=date('H:i:s');
 		$seg = $this->session->flashdata('seg');
-		$seg += $this->_tiempos($hora1, $hora2);
+		$seg += tiempo_en_seg($hora1, $hora2);
 		$this->session->set_flashdata('seg', $seg);
 
 		if($codigo=="" || $id==""){
@@ -138,9 +141,9 @@ class Ejercicios extends CI_Controller {
 			$resultado = array('ejercicio_id' => $valida['id'],
 				'usuario' => $this->session->userdata('codigo'),
 				'tiempo' => $this->session->flashdata('seg'),
-				'eficiencia' => $this->_calcular_eficiencia(),
+				'eficiencia' => calcular_eficiencia($intentos),
 				'fecha' => date("Y-m-d H:i:s"));
-			$this->resultado_model->crearresultado($resultado);
+			//$this->resultado_model->crearresultado($resultado);
 			
 			//Mensaje BIEN
 			redirect(base_url().'ejercicios/bien');
@@ -154,7 +157,7 @@ class Ejercicios extends CI_Controller {
 				// 4 intentos
 				// Guardar_BD
 				// Redirigir
-				$op = $this->_definir_op($valida['nombre_op']);
+				$op = definir_op($valida['nombre_op']);
 
 				$datos['titulo'] = "Debes Mejorar";
 				$datos['js'] = 	"";
@@ -166,63 +169,21 @@ class Ejercicios extends CI_Controller {
 			}
 		}
 	}
-
-	function _tiempos($val1, $val2)
-	{
-		$dateTime1 = new DateTime($val1);
-		$dateTime2 = new DateTime($val2);
-		$inter = $dateTime1->diff($dateTime2);
-
-		$seg = ($inter->h * 3600) + ($inter->i * 60) + ($inter->s);
-		return $seg;// Devuelve los segundos que empleó el usuario
-	}
-
-	function _ejercicio_aleatorio()
-	{
-		$objectAct = $this->ejercicio_model->consultarejercicio();
-		if ($objectAct !== FALSE) {
-			$n = mt_rand(0, count($objectAct));
-			$objectAct = $objectAct->result();
-			$ejercicio = $objectAct[$n];
-			return $ejercicio;
-		}
-		return FALSE;
-	}
-
 	function bien()
 	{
 		//Carga solo si se realizo un correcto ejercicio
 		if (!$this->session->flashdata('seg')) {
 			redirect(base_url());
 		}
+		$intentos = $this->session->flashdata('intentos');
 		$datos['titulo'] = "Bien Hecho";
 		$datos['js'] = 	"";
-		//				$datos['contenido'] = "bien";
 		$datos['tipo'] = "bien";
+		$datos['eficiencia'] = 	calcular_eficiencia($intentos);
 		$datos['contenido']= $this->load->view('bien',$datos,true);
-		$datos['eficiencia'] = 	$this->_calcular_eficiencia();
 		$this->load->view('plantillas/plantilla', $datos);
 	}
-
-	function _calcular_eficiencia()
-	{
-		$intentos = $this->session->flashdata('intentos');
-		return round((3*100/$intentos)/3);
-	}
-
-	function _definir_op($nombre)
-	{
-		$nombre = strtolower($nombre);
-		if (strpos($nombre, 'recorrer')!==FALSE || strpos($nombre, 'modificar')!==FALSE) {
-			return 'operaciones/modificar';
-		}elseif (strpos($nombre, 'insertar')!==FALSE) {
-			return 'operaciones/insertar';
-		}elseif (strpos($nombre, 'eliminar')!==FALSE) {
-			return 'operaciones/eliminar';
-		}else{
-			return 'operaciones';
-		}
-	}
+	
 	// Solo permite el acceso al grupo de solo ejercicios (grupo 1)
 	function _validar_grupo()
 	{

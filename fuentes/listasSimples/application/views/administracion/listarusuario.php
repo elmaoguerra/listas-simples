@@ -33,7 +33,7 @@
 	            <th><h3>codigo</h3></th>
 	            <th><h3>nombre</h3></th>
 	            <th><h3>email</h3></th>
-	            <th><h3>conexion</h3></th>
+	            <th><h3>estado</h3></th>
 	            <th><h3>grupo_id</h3></th>
 	            <th align="center" class="nosort"><h3>Editar</h3></th>
 	            <th width="50" align="center" class="nosort"><h3>Eliminar</h3></th>
@@ -50,7 +50,7 @@
 	            <td align="center"><?php echo $row->codigo; ?></td>
 	            <td align="center"><?php echo $row->nombre; ?></td>
 	            <td align="center"><?php echo $row->email; ?></td>
-	            <td align="center"><?php echo $row->conexion; ?></td>
+	            <td align="center"><?php echo $row->estado; ?></td>
 	            <td align="center"><?php echo $row->grupo_id; ?></td>
 	            <td width="50" align="center"><a href="<?php echo base_url();?>index.php/adminusuariocontroller/actualizar/<?php echo $row->codigo;?>"><img src="<?php echo base_url();?>images/editar.png" width="21" height="21" style="border: none;" /></a></td>
 	            <td align="center"><a href="<?php echo base_url();?>index.php/adminusuariocontroller/eliminar/<?php echo $row->codigo;?>"><img src="<?php echo base_url();?>images/delete.png" width="21" height="21" style="border: none;" /></a></td>

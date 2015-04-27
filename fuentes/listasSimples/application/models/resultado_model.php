@@ -30,15 +30,6 @@ class resultado_model extends CI_Model{
 		else return FALSE; 
 	} 
 
-// 	SELECT o.name, avg(r.tiempo), avg(r.eficiencia)
-// FROM resultado r
-// join ejercicio e on
-// r.ejercicio_id = e.id 
-// join operacion o on
-// e.operacion_id = o.id
-// where r.usuario=2
-// group by o.name
-
 	function consultar_promedio_operaciones($usuario)
 	{
 		$sql = "select (o.name) as op, (avg(r.tiempo)) as time, (avg(r.eficiencia)) as efi ".

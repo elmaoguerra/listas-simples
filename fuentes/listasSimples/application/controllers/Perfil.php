@@ -21,25 +21,25 @@ class Perfil extends CI_Controller {
 		$usuario = $query->row();
 		
 		$query = $this->resultado_model->consultarresultadoPorUsuario($codigo);
-		$resultados = $query->result();
+		$resultados = ($query !== FALSE) ? $query->result() : FALSE ;
 		$resultados = get_ejer_intentos($resultados);
 		
 		$query = $this->resultado_model->consultar_aprendizaje($codigo);
-		$eficiencia = $query->row();
+		$aprendizaje = $query->row();
 
 		$query = $this->resultado_model->consultar_promedio_operaciones($codigo);
-		$operaciones = $query->result();
+		$operaciones = ($query!==FALSE) ? $query->result() : NULL;
 
 		$datos['nombre'] = $this->session->userdata('nombre');
 		$datos['grupo']  = $this->session->userdata('grupo');
 		$datos['codigo'] = $codigo;
 		$datos['email'] = $usuario->email;
 
-		$datos['eficiencia'] = $eficiencia->eficiencia_gen;
-		$datos['eficacia'] = convertir_tiempo($eficiencia->tiempo_gen);		
+		$datos['eficiencia'] = round($aprendizaje->eficiencia_gen);
+		$datos['eficacia'] = convertir_tiempo($aprendizaje->tiempo_gen);		
 		$datos['total_ejer'] = $resultados['total_ejer'];
-		$datos['intentos'] = $resultados['intentos'];
-		$datos['media'] = $resultados['media'];
+		$datos['intentos'] 	= $resultados['intentos'];
+		$datos['media'] 	= $resultados['media'];
 		$datos['intento_1'] = $resultados['intento_1'];
 		$datos['intento_2'] = $resultados['intento_2'];
 		$datos['intento_3'] = $resultados['intento_3'];
@@ -48,7 +48,7 @@ class Perfil extends CI_Controller {
 
 		$datos['titulo'] = $this->session->userdata('nombre');
 		$datos['js'] = 	"";
-
+		//$this->output->enable_profiler(TRUE);
 		//		$datos['contenido'] = "perfil";
 		$datos['contenido']= $this->load->view('perfil',$datos,true);
 		$this->load->view('plantillas/plantilla', $datos);

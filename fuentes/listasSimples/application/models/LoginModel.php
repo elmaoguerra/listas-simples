@@ -30,7 +30,6 @@ class LoginModel extends CI_Model{
 			}
 
 		}else{
-			
 			$this->session->set_flashdata('mensaje', 'Código y/o contraseña invalidos.');
 		}
 

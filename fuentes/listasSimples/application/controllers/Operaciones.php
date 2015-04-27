@@ -91,7 +91,7 @@ class Operaciones extends CI_Controller {
 		$datos['js'] = 	"";
 
 //		$datos['contenido'] = "operaciones/recorrer";
-		$datos['contenido']= $this->load->view('operaciones/recorrer',$datos,true);
+		$datos['contenido']= $this->load->view('operaciones/recorrer',$true,datos);
 		$this->load->view('plantillas/plantilla', $datos);
 	}
 

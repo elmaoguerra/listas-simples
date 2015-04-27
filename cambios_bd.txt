@@ -1,0 +1,8 @@
+------- lunes 27 de abril 6:22pm
+
++ cambio campo 'solucion'(varchar) por 'pseudocodigo' text ->Modificacion tabla ejercicio
+
++ campo id en tabla resultado agregado ->Modificacion tabla resultado
+
++ campo 'conexion'datetime cambiado por 'estado' varchar(10) ->Modificacion tabla usuario
+

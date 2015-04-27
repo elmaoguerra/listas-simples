@@ -20,12 +20,10 @@ class LoginController extends CI_Controller{
 				log_message('error', 'JJOC aca estoy LoginController if 1');
 				redirect(base_url().'administracion');
 			
-			}else if($this->session->userdata('grupo')  && $this->session->userdata('grupo') == PERFIL_SOLO_EJERCICIOS){ // panel estudiante
+			}else if($this->session->userdata('grupo')  && $this->session->userdata('grupo') != PERFIL_ADMINISTRADOR){ // panel estudiante
 								log_message('error', 'JJOC aca estoy LoginController if 2');
 				redirect(base_url().'definicion');
-				
 			}
-			
 		}
 	}
 

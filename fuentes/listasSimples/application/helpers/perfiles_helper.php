@@ -1,5 +1,4 @@
 <?php
-
 	function getMenuByPerfil($perfil){
 		if($perfil == PERFIL_SOLO_EJERCICIOS ){
 			
@@ -19,7 +18,17 @@
 					<li class=\"inline-block-top\"><a href=\"".base_url()."ayuda\">Ayuda</a></li>
 					</ul>";
 			
-		}else{
+		}else if($perfil == PERFIL_METAS_IMPUESTAS || $perfil == PERFIL_ELIGE_METAS){
+			
+			return "<ul class=\"menu\">
+					<li class=\"inline-block-top\"><a href=\"".base_url()."definicion\">Definición</a></li>
+							<li class=\"inline-block-top\"><a href=\"".base_url()."operaciones\">Operaciones</a></li>
+							<li class=\"inline-block-top\"><a href=\"".base_url()."metas\">Metas</a></li>
+					<li class=\"inline-block-top\"><a href=\"".base_url()."ayuda\">Ayuda</a></li>
+					</ul>";
+			
+		}
+		else{
 			return "";
 		}
 		
@@ -50,32 +59,34 @@
 	function get_ejer_intentos($resultados)
 	{
 		$intentos = 0;
-		$total_ejer = count($resultados);
+		$total_ejer = ($resultados!==FALSE) ? count($resultados) : 0;
 
 		$datos['intento_1'] = 0;
 		$datos['intento_2'] = 0;
 		$datos['intento_3'] = 0;
 		$datos['intento_4'] = 0;
 
-		foreach ($resultados as $res) {
-			$eficiencia = $res->eficiencia;
-			if ($eficiencia == 100) {
-				$intentos += 1;
-				$datos['intento_1']++;
-			}elseif ($eficiencia == 50) {
-				$intentos += 2;
-				$datos['intento_2']++;
-			}elseif ($eficiencia == 33) {
-				$intentos += 3;
-				$datos['intento_3']++;
-			}else{
-				$intentos += 3;
-				$datos['intento_4']++;
+		if ($total_ejer > 0) {
+			foreach ($resultados as $res) {
+				$eficiencia = $res->eficiencia;
+				if ($eficiencia == 100) {
+					$intentos += 1;
+					$datos['intento_1']++;
+				}elseif ($eficiencia == 50) {
+					$intentos += 2;
+					$datos['intento_2']++;
+				}elseif ($eficiencia == 33) {
+					$intentos += 3;
+					$datos['intento_3']++;
+				}else{
+					$intentos += 3;
+					$datos['intento_4']++;
+				}
 			}
 		}
 		$datos['intentos'] = $intentos;
 		$datos['total_ejer'] = $total_ejer;
-		$datos['media'] = number_format(($intentos/$total_ejer), 2, ',', '');
+		$datos['media'] = ($total_ejer > 0) ? number_format(($intentos/$total_ejer), 2, ',', '') : 0;
 
 		return $datos;
 	}

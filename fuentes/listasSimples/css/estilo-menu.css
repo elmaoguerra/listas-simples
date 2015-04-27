@@ -210,6 +210,29 @@ article{
 	/*padding-bottom: 10px;*/
 }
 
+#detalle-op{
+	box-shadow: 0.5em 0.5em 1em #93AE93;
+}
+#detalle-op thead{
+	background-color: #4CC288;
+	text-align: center;
+}
+#detalle-op tbody tr:nth-child(odd) {
+	background: #e8edff;
+}
+
+#detalle-op tbody tr:nth-child(even) {
+	background-color: #6FC8D7;
+}
+#detalle-op th{
+	padding: 1em 0.5em;
+}
+#detalle-op td{
+	padding: 1.2em;
+}
+#detalle-op tr:hover td { 
+	background: #d0dafd; color: #339;
+}
 
 #enunciado{
 	width: 80%;

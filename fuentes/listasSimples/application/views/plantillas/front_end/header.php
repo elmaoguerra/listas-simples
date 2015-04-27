@@ -3,7 +3,6 @@ $nombre = $this->session->userdata('nombre');
 $grupo  = $this->session->userdata('grupo');
 $codigo = $this->session->userdata('codigo');
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>

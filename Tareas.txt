@@ -1,22 +1,9 @@
 ﻿TAREAS
 
-Agregar un campo text en la tabla ejercicio para el pseudocodigo, o tambien, agregar las lineas de pseudocodigo en la tabla sentencias asociadas a un ejercicio.
-
-
-
 Crear tabla ci_session para el manejo de la session en ves de cookies
 
 
-
-Crear funcion que tome cada usuario en la base de datos, genere una clave aleatoria, la codifique en md5 y envie el correo informando la clave para el acceso a la aplicacion
-
-.
-
 Crear el modulo de 'Ayuda' para la interaccion de la aplicación
-
-
-
-Crear el modulo del perfil del usuario y mostrar estaisticas de los ejericios, eficiencia y eficacia
 
 
 
