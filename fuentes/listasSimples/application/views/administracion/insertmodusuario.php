@@ -1,11 +1,11 @@
 <form action="<?php echo isset ($codigo) && $codigo != null ?  base_url().'index.php/adminusuariocontroller/actualizarAcc' : base_url().'index.php/adminusuariocontroller/insertarAcc'; ?>" method="post" enctype="multipart/form-data" name="formInsUpdusuario">
   <div style="height:400px;">
-  <table border="0" align="center">
+  <table width="80%" border="0" align="center">
     <tr>
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td align="left"><?php echo isset ($codigo) && $codigo != null ?  'Actualizar' : 'Registrar'; ?> Usuario</td>
+      <td align="left"><h2><?php echo isset ($codigo) && $codigo != null ?  'Actualizar' : 'Registrar'; ?> Usuario</h2></td>
     </tr>
     <tr>
       <td><table width="600" border="0" align="center" cellspacing="2">
@@ -33,11 +33,6 @@
           <td align="left">Re-Password</td>
           <td><label for="txtpassword"></label>
             <input type="password" name="txtpassword2" id="txtpassword2" value="" /></td>
-        </tr>
-        <tr>
-          <td align="left">Ultima Conexion</td>
-          <td><label for="txtconexion"></label>
-            <input type="text" name="txtconexion" id="txtconexion" readonly="readonly" value="<?php echo isset ($conexion) && $conexion != null ? $conexion : ''; ?>" /></td>
         </tr>
         <tr>
           <td align="left">Grupo</td>

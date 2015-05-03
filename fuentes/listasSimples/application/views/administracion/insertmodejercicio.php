@@ -1,13 +1,13 @@
 <form action="<?php echo isset ($id) && $id != null ?  base_url().'index.php/adminejerciciocontroller/actualizarAcc' : base_url().'index.php/adminejerciciocontroller/insertarAcc'; ?>" method="post" enctype="multipart/form-data" name="formInsUpdejercicio">
   
-  <div style="height:400px;">
+  <div style="height:450px;">
   
-  <table border="0" align="center">
+  <table width="70%" border="0" align="center">
     <tr>
       <td>&nbsp;</td>
     </tr>
     <tr>
-      <td align="left"><?php echo isset ($id) && $id != null ?  'Actualizar' : 'Registrar'; ?> Ejercicio</td>
+      <td align="left"><h2><?php echo isset ($id) && $id != null ?  'Actualizar' : 'Registrar'; ?> Ejercicio</h2></td>
     </tr>
     <tr>
       <td><table width="600" border="0" align="center" cellspacing="0">

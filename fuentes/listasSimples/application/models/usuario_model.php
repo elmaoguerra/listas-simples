@@ -42,7 +42,6 @@ class usuario_model extends CI_Model{
 											'nombre'  => $data['nombre'], 
 											'email'  => $data['email'], 
 											'password'  => $data['password'], 
-											'conexion'  => $data['conexion'], 
 											'grupo_id'  => $data['grupo_id']));
 	} 
 	 

@@ -4,12 +4,12 @@
 <link rel="stylesheet" href="<?php echo base_url();?>js/tinytable/style.css" /> 
  
 <script type="text/javascript" src="<?php echo base_url();?>js/tinytable/script.js"></script> 
-	<table border="0" align="center" cellspacing="5">
+	<table width="80%" border="0" align="center" cellspacing="5">
      <tr>
 	    <td>&nbsp;</td>
       </tr>
 	  <tr>
-	    <td>Usuarios</td>
+	    <td><h2>Usuarios</h2></td>
       </tr>
        <tr>
 	    <td align="right"> 

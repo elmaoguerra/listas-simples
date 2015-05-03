@@ -3,12 +3,12 @@
 <!-- data table --> 
 <link rel="stylesheet" href="<?php echo base_url();?>js/tinytable/style.css" /> 
  
-<table border="0" align="center">
+<table width="80%" border="0" align="center">
   <tr>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>Ejercicios</td>
+    <td><h2>Ejercicios</h2></td>
   </tr>
   <tr>
      <td align="right"> 
@@ -26,7 +26,7 @@
           <div>Registros <span id="startrecord"></span>-<span id="endrecord"></span> de <span id="totalrecords"></span></div>
           <div><a href="javascript:sorter.reset()"></a></div>
         </span> </div>
-      <table cellpadding="0" cellspacing="0" border="0" id="table" class="tinytable">
+      <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0" class="tinytable" id="table">
         <thead>
           <tr>
             <th><h3>Id</h3></th>

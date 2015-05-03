@@ -84,7 +84,6 @@ class AdminusuarioController extends CI_Controller {
 				 $datosObj['nombre']= $row->nombre;
 				 $datosObj['email']= $row->email;
 				 $datosObj['grupo_id']= $row->grupo_id;
-				 $datosObj['conexion']= $row->conexion;
 												 				
 			}
 		}
@@ -116,7 +115,6 @@ class AdminusuarioController extends CI_Controller {
 		 }
 		 
 		 $datosActualizar['password'] = $passwordAct;
-		 $datosActualizar['conexion']= $this->input->post('txtconexion');
 		 $datosActualizar['grupo_id']= $this->input->post('txtgrupo_id');
  
 		$this->usuario_model->actualizarusuario($datosActualizar['codigo'],$datosActualizar); 
